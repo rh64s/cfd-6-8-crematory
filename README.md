@@ -20,7 +20,7 @@
 ----
 ### Backend
 * PHP (8.2 и больше)
-* Laravel + JWT Authorization
+* Laravel 12.x + JWT Authorization
 * PostgreSQL
 * Docker + Docker compose
 * Nginx
