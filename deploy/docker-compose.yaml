@@ -9,14 +9,19 @@ services:
 #    working_dir: /var/www
     volumes:
       - ../backend/:/var/www/laravel
-#    networks:
-#      - nw
+    networks:
+      - postgres_net
     restart: unless-stopped
+    ports:
+    - "8000:8000"
 
   db:
     container_name: crematory_db
-    image: 'postgres:18-alpine'
-    restart: unless-stopped
+    image: 'postgres:latest'
+#    build:
+#      context: postgres
+#      dockerfile: postgres.DockerFile
+    restart: no
     env_file:
       - postgres.env
     ports:
