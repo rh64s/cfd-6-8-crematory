@@ -9,8 +9,8 @@ services:
 #    working_dir: /var/www
     volumes:
       - ../backend/:/var/www/laravel
-    networks:
-      - postgres_net
+#    networks:
+#      - postgres_net
     restart: unless-stopped
     ports:
     - "8000:8000"
@@ -22,8 +22,11 @@ services:
 #      context: postgres
 #      dockerfile: postgres.DockerFile
     restart: no
-    env_file:
-      - postgres.env
+    environment:
+      POSTGRES_DB: "laravel-postgres-db"
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "postgrespasswordlaravel"
+      PGDATA: "/var/lib/postgresql/data"
     ports:
       - "5432:5432"
     volumes:
@@ -34,8 +37,11 @@ services:
   pgadmin:
     container_name: crematory_pgadmin
     image: 'dpage/pgadmin4:9.8'
-    env_file:
-      - pgadmin.env
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "admin@example.com"
+      PGADMIN_DEFAULT_PASSWORD: "postgrespasswordlaravel"
+      PGADMIN_CONFIG_SERVER_MODE: "False"
+
     restart: no
     volumes:
       - pgadmin-data:/var/lib/pgadmin
