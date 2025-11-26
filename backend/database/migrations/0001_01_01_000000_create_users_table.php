@@ -24,7 +24,7 @@ return new class extends Migration
 
             $table->rememberToken();
             $table->dateTime('created_at')->default(Carbon\Carbon::now());
-            $table->dateTime('updated_at');
+            $table->dateTime('updated_at')->nullable();
             $table->string('login', 32)->unique();
         });
 

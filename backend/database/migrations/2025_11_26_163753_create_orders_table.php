@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained();
             $table->enum('status', ['pending', 'confirmed', 'in_progress', 'completed', 'cancelled'], 50)->nullable();
             $table->dateTime('creation_date')->default(Carbon\Carbon::now());
-            $table->dateTime('updated_at'); // on update current_timestamp?
+            $table->dateTime('updated_at')->nullable(); // on update current_timestamp?
             $table->dateTime('cremation_date')->nullable();
             $table->text('urn_delivery_place');
             $table->text('cancellation_reason')->nullable();
