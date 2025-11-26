@@ -23,7 +23,7 @@ return new class extends Migration
             $table->boolean('is_admin')->default(false);
 
             $table->rememberToken();
-            $table->dateTime('created_at');
+            $table->dateTime('created_at')->default(Carbon\Carbon::now());
             $table->dateTime('updated_at');
             $table->string('login', 32)->unique();
         });
