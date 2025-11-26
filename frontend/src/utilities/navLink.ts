@@ -1,9 +1,6 @@
-import { ref} from 'vue'
 import  type { Types }  from '@/utilities/types.ts';
 
-
-
-export const navLinkList = ref<Types[]>([
+export const navLinkList: Types[] = [
   {
     text: 'о нас',
     link: '#about'
@@ -24,4 +21,4 @@ export const navLinkList = ref<Types[]>([
     text: 'вопросы',
     link: '#questions'
   }
-])
+]
