@@ -10,9 +10,17 @@ export default defineConfig({
     vue(),
     vueDevTools(),
   ],
+
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
     },
+  },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        additionalData: '@use "@/assets/style/base/_variables.scss" as *; @use "@/assets/style/base/_fonts.scss" as *;',
+      }
+    }
   },
 })
