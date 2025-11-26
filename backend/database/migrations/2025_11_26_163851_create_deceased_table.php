@@ -15,7 +15,7 @@ return new class extends Migration
         Schema::create('deceased', function (Blueprint $table) {
             $table->id();
 //            $table->timestamps();
-//            $table->order_id()
+            $table->foreignId('order_id')->constrained('orders');
             $table->string('first_name', 255);
             $table->string('last_name', 255);
             $table->string('patronymic', 255)->nullable();
