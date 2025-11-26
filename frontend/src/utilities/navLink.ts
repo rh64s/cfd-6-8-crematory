@@ -1,6 +1,6 @@
-import  type { Types }  from '@/utilities/types.ts';
+import  type { NavLink }  from '@/utilities/types.ts';
 
-export const navLinkList: Types[] = [
+export const navLinkList: NavLink[] = [
   {
     text: 'о нас',
     link: '#about'
