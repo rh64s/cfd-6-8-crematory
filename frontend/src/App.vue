@@ -1,11 +1,23 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { navLinkList} from "@/utilities/navLink.ts";
+import  NavigationLink  from "@/components/UI/NavigationLink.vue";
 
+const links = navLinkList
+
+</script>
 <template>
-  <h1>You did it!</h1>
-  <p>
-    Visit <a href="https://vuejs.org/" target="_blank" rel="noopener">vuejs.org</a> to read the
-    documentation
-  </p>
-</template>
 
-<style scoped></style>
+  <nav class="navigation">
+    <p v-for="link in links" :key="link.text" >
+      <NavigationLink :link="link.text" :href="link.link">{{link.text}}</NavigationLink>
+    </p>
+  </nav>
+
+</template>
+<style lang="scss">
+
+.navigation{
+  display: flex;
+  justify-content: space-between;
+}
+</style>
