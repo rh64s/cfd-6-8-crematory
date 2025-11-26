@@ -18,13 +18,13 @@ return new class extends Migration
             $table->string('patronymic', 255)->nullable();
             $table->string('email', 255)->unique()->nullable();
             $table->string('phone', 20)->unique();
-//            $table->timestamp('email_verified_at')->nullable();
             $table->text('password_hash');
 
             $table->boolean('is_admin')->default(false);
 
             $table->rememberToken();
-            $table->timestamps();
+            $table->dateTime('created_at');
+            $table->dateTime('updated_at');
             $table->string('login', 32)->unique();
         });
 
