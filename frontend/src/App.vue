@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { navLinkList} from "@/utilities/navLink.ts";
 import  NavigationLink  from "@/components/UI/NavigationLink.vue";
+import Button from "@/components/UI/Button.vue";
 
 const links = navLinkList
 
@@ -12,6 +13,7 @@ const links = navLinkList
       <NavigationLink :link="link.text" :href="link.link">{{link.text}}</NavigationLink>
     </p>
   </nav>
+  <Button>clon</Button>
 
 </template>
 <style lang="scss">
