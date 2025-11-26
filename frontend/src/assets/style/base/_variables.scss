@@ -19,6 +19,10 @@ $color-leather-dark: #B09587;
 
 
 /*Цвета компонентов*/
-$btn-color: #464646;
+$btn-color: $color-gray;
 $btn-color-hover: #696969;
 $btn-color-active: #2E2E2E;
+
+$link-btn: $color-leather;
+$link-btn-hover: $color-leather-input;
+$link-btn-active: #B19587;
