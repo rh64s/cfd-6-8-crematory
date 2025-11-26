@@ -22,8 +22,6 @@ return new class extends Migration
             $table->text('password_hash');
 
             $table->boolean('is_admin')->default(false);
-//            $table->boolean('gosservices_bound')->default(false);
-//            $table->string('gosservices_id', 255)->unique()->nullable();
 
             $table->rememberToken();
             $table->timestamps();
