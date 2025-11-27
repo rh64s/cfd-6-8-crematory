@@ -13,18 +13,19 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('full_name', 255);
+            $table->string('first_name', 255);
+            $table->string('last_name', 255);
+            $table->string('patronymic', 255)->nullable();
             $table->string('email', 255)->unique()->nullable();
-            $table->string('phone', 20)->unique()->nullable();
-            $table->timestamp('email_verified_at')->nullable();
+            $table->string('phone', 20)->unique();
             $table->text('password_hash');
 
             $table->boolean('is_admin')->default(false);
-//            $table->boolean('gosservices_bound')->default(false);
-//            $table->string('gosservices_id', 255)->unique()->nullable();
 
             $table->rememberToken();
-            $table->timestamps();
+            $table->dateTime('created_at')->default(Carbon\Carbon::now());
+            $table->dateTime('updated_at')->nullable();
+            $table->string('login', 32)->unique();
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {

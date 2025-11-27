@@ -2,47 +2,69 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class User extends Authenticatable
 {
-    /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable;
-
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var list<string>
-     */
+    use HasApiTokens, Notifiable;
     protected $fillable = [
-        'name',
+        'first_name',
+        'last_name',
+        'patronymic',
+        'login',
+        'phone',
         'email',
         'password',
+        'is_admin',
     ];
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var list<string>
-     */
     protected $hidden = [
         'password',
         'remember_token',
     ];
 
-    /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
-     */
-    protected function casts(): array
+    protected $casts = [
+        'is_admin' => 'boolean',
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
+    ];
+
+    protected static function booted()
     {
-        return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
-        ];
+        static::creating(function ($user) {
+            if (! empty($user->password) && ! str_starts_with($user->password, '$2y$')) {
+                $user->password = Hash::make($user->password);
+            }
+        });
+
+        static::updating(function ($user) {
+            if ($user->isDirty('password') && ! str_starts_with($user->password, '$2y$')) {
+                $user->password = Hash::make($user->password);
+            }
+        });
+    }
+
+    public function isAdmin(): bool
+    {
+        return (bool) $this->is_admin;
+    }
+
+    public function anonymize(): self
+    {
+        $this->update([
+            'first_name' => 'Удалённый',
+            'last_name' => 'Пользователь',
+            'patronymic' => null,
+            'login' => 'deleted_' . $this->id,
+            'email' => null,
+            'phone' => '+7000000000' . str_pad($this->id, 10, '0', STR_PAD_LEFT),
+            'password' => Hash::make(Str::random(60)),
+        ]);
+
+        return $this;
     }
 }
