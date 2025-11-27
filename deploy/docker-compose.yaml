@@ -10,7 +10,7 @@ services:
     volumes:
       - ../backend/:/var/www/laravel
     networks:
-      - postgres_net
+      - crematory_net
     restart: unless-stopped
 #    ports:
 #    - "8000:8000"
@@ -29,7 +29,7 @@ services:
     volumes:
       - postgres-data:/var/lib/postgresql/data/
     networks:
-      - postgres_net
+      - crematory_net
 
   pgadmin:
     container_name: crematory_pgadmin
@@ -46,13 +46,31 @@ services:
     depends_on:
       - db
     networks:
-      - postgres_net
+      - crematory_net
 
+  web:
+    container_name: crematory_wev
+    image: 'nginx:stable-alpine'
+    ports:
+      - "80:80"
+    volumes:
+      - ./proxy/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+      - ../../laravel:/var/www/laravel
+      - phpmyadmin_data:/var/www/html
+    depends_on:
+      - db
+      - app
+      - pgadmin
+    networks:
+      - crematory_net
+
+  front:
+    container_name: front
 
 volumes:
   postgres-data:
   pgadmin-data:
 
 networks:
-  postgres_net:
+  crematory_net:
     driver: bridge
