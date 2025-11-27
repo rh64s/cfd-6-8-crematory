@@ -20,5 +20,5 @@ export interface Question {
   id: number;
   title: string;
   text: string;
-  check: boolean;
+  isOpen: boolean;
 }

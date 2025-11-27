@@ -2,8 +2,8 @@ import type {Services} from "@/utilities/types.ts";
 
 export const servicesList: Services[] = [
   {
-    id:1,
-    summary:'15 000',
+    id: 1,
+    summary: '15 000',
     text: 'Минимальный комплекс для проведения кремации ' +
       'с соблюдением всех формальностей.'
   },

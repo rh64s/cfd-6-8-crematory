@@ -22,19 +22,24 @@ const links = navLinkList
     </div>
   </nav>
   <div class="questions-list">
-    <div  v-for="question in questions" :key="question.id" >
-      <accordion :Question="question"></accordion>
+    <div  v-for="question in questions" :key="question.id" class="questions__item" >
+      <accordion
+        :question="question"
+      />
     </div>
   </div>
 
 </template>
 <style lang="scss">
+.questions-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
-.questions-list{
-  display: grid;
-  grid-column-gap: 10px;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr;
+.questions__item {
+  width: 100%;
+  max-width: 750px;
 }
 
 .navigation{
