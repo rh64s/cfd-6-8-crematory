@@ -10,8 +10,9 @@ class AuthController extends Controller
 {
     public function register(RegisterUserRequest $request): JsonResponse
     {
-        $result = (new RegisterUserAction())->handle($request);
-
-        return response()->json($result, 201);
+        return response()->json(
+            (new RegisterUserAction())->handle($request),
+            201
+        );
     }
 }

@@ -16,36 +16,44 @@ class RegisterUserRequest extends ApiFormRequest
     public function rules(): array    /*Добавила на свой взгляд адекватные поля*/
     {
         return [
-            'first_name' => ['required',
+            'first_name' => [
+                'required',
                 'string',
                 'between:2,255',
                 'regex:/^[а-яА-ЯёЁa-zA-Z\s\-\'\x{0400}-\x{04FF}]+$/u',           /*Регулярки повторяются, может вынесу в отдельную переменную*/
             ],
-            'last_name' => ['required',
+            'last_name' => [
+                'required',
                 'string',
                 'between:2,255',
                 'regex:/^[а-яА-ЯёЁa-zA-Z\s\-\'\x{0400}-\x{04FF}]+$/u',
             ],
-            'patronymic' => ['nullable',
+            'patronymic' => [
+                'nullable',
                 'string',
                 'between:2,255',
                 'regex:/^[а-яА-ЯёЁa-zA-Z\s\-\'\x{0400}-\x{04FF}]+$/u',
             ],
-            'login' => ['required',
+            'login' => [
+                'required',
                 'string',
                 'between:6,32',
                 'unique:users,login',
                 'regex:/^[a-zA-Z0-9]+$/',
                 ],
-            'phone' => ['required',
+            'phone' => [
+                'required',
                 'string',
                 'regex:/^[\+]?[0-9\(\)\s\-]{10,20}$/',
+                'unique:users,phone',
             ],
-            'email' => ['nullable',
+            'email' => [
+                'nullable',
                 'email',
                 'unique:users,email',
             ],
-            'password' => ['required',
+            'password' => [
+                'required',
                 'string',
                 'min:8',
                 'regex:/[A-Z]/',
@@ -60,6 +68,7 @@ class RegisterUserRequest extends ApiFormRequest
             'first_name.regex' => 'Имя должно содержать только буквы, пробелы, дефисы и апострофы.',
             'last_name.regex' => 'Фамилия должна содержать только буквы, пробелы, дефисы и апострофы.',
             'patronymic.regex' => 'Отчество должно содержать только буквы, пробелы, дефисы и апострофы.',
+            'login.regex' => 'Логин должен содержать только латинские буквы и цифры.',
             'phone.regex' => 'Неверный формат телефона. Пример: +7 (999) 123-45-67.',
             'password.regex' => 'Пароль должен содержать минимум 8 символов, 1 заглавную букву и 1 цифру.',
         ];
@@ -77,5 +86,15 @@ class RegisterUserRequest extends ApiFormRequest
             }
             $this->merge(['phone' => $clean]);
         }
+    }
+    protected function failedValidation(Validator $validator): void
+    {
+        throw new HttpResponseException(response()->json([
+            'error' => [
+                'code' => 400,
+                'message' => 'Пожалуйста, введите корректные данные.',
+                'details' => $validator->errors(),
+            ],
+        ], 400));
     }
 }

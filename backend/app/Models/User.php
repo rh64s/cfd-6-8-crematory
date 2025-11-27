@@ -19,6 +19,7 @@ class User extends Authenticatable
         'phone',
         'email',
         'password',
+        'is_admin',
     ];
 
     protected $hidden = [
@@ -60,7 +61,7 @@ class User extends Authenticatable
             'patronymic' => null,
             'login' => 'deleted_' . $this->id,
             'email' => null,
-            'phone' => null,
+            'phone' => '+7000000000' . str_pad($this->id, 10, '0', STR_PAD_LEFT),
             'password' => Hash::make(Str::random(60)),
         ]);
 
