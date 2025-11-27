@@ -6,6 +6,7 @@
     <slot></slot>
   </button>
 </template>
+
 <style scoped lang="scss">
 .button{
   font-family: "Inter", sans-serif;

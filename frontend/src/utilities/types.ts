@@ -6,6 +6,19 @@ export interface NavLink {
 
 export interface Services {
   id: number;
-  summary: number;
+  summary: string;
   text: string;
+}
+
+export interface Accordion {
+  id: number;
+  title: string;
+  text: string;
+}
+
+export interface Question {
+  id: number;
+  title: string;
+  text: string;
+  check: boolean;
 }
