@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained();
-            $table->enum('status', ['pending', 'confirmed', 'in_progress', 'completed', 'cancelled'], 50)->nullable();
+            $table->enum('status', ['pending', 'confirmed', 'in_progress', 'completed', 'cancelled'], 50)->default('pending');
             $table->dateTime('creation_date')->default(Carbon\Carbon::now());
             $table->dateTime('updated_at')->nullable(); // on update current_timestamp?
             $table->dateTime('cremation_date')->nullable();
