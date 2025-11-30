@@ -67,4 +67,8 @@ class User extends Authenticatable
 
         return $this;
     }
+    public function getAuthIdentifierName()
+    {
+        return 'login';
+    }
 }
