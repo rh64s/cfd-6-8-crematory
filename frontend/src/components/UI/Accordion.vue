@@ -2,11 +2,11 @@
 import type { Question } from "@/utilities/types.ts";
 import { ref } from "vue";
 
-interface QuestionData {
+interface iProps {
   question: Question
 }
 
-const props = defineProps<QuestionData>()
+const props = defineProps<iProps>()
 
 const isOpen = ref<boolean>(props.question.isOpen)
 

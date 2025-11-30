@@ -3,7 +3,7 @@
 </script>
 <template>
     <div class="button-link">
-<!--      <img src="@/assets/image/icons/arrow.svg" alt="стрелка">-->
+      <img src="@/assets/image/icons/arrow.svg" alt="стрелка">
     </div>
 </template>
 <style scoped lang="scss">
