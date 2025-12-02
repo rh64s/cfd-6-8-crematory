@@ -34,6 +34,7 @@ const props = defineProps<IProps>()
   flex-direction: column;
   padding: 40px 20px;
   gap: 24px;
+  align-items: flex-start;
 
   &__header{
     display: flex;
@@ -63,6 +64,7 @@ const props = defineProps<IProps>()
     font-family: $font-primary;
     font-weight: $font-weight-regular;
     font-size: 1.2rem;
+    max-width: 80%;
   }
 }
 </style>
