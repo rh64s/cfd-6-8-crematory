@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('patronymic', 255)->nullable();
             $table->string('email', 255)->unique()->nullable();
             $table->string('phone', 20)->unique();
-            $table->text('password_hash');
+            $table->text('password');
 
             $table->boolean('is_admin')->default(false);
 
