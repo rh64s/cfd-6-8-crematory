@@ -28,6 +28,8 @@ h1 {
 }
 
 .header {
+  width: 100%;
+
   &__inner {
     max-width: 1540px;
     width: 100%;
