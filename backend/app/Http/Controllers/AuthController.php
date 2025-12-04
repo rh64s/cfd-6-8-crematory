@@ -32,9 +32,10 @@ class AuthController extends Controller
         ], 201);
     }
 
-    public function login(LoginUserRequest $request): JsonResponse
+    public function login(LoginUserRequest $request, LoginUserAction $action): JsonResponse
     {
-        $result = $this->loginUserAction->handle($request->validated());
+        $credentials = $request->validated();
+        $result = $action->handle($credentials);
 
         return response()->json([
             'success' => true,

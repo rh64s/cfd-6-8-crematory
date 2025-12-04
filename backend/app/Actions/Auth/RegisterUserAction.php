@@ -6,7 +6,7 @@ use App\Models\User;
 
 class RegisterUserAction
 {
-    public function handle(array $data): User
+    public function handle(array $data): User     // создаем юзера
     {
         return User::create([
             'first_name' => $data['first_name'],

@@ -3,6 +3,8 @@
 namespace App\Http\Requests;
 class ForgotPasswordRequest extends ApiFormRequest
 {
+    // для отправки кода восстановления используем логин
+
     public function rules(): array
     {
         return [

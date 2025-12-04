@@ -15,7 +15,7 @@ class PasswordResetTokenService
         DB::table('password_reset_tokens')->updateOrInsert(
             ['login' => $login],
             [
-                'token' => Hash::make($plainToken),
+                'token' => Hash::make($plainToken),     // создаем токен
                 'created_at' => now(),
             ]
         );
@@ -26,27 +26,28 @@ class PasswordResetTokenService
      */
     public function validate(string $login, string $plainToken): array
     {
-        $record = DB::table('password_reset_tokens')
+        $record = DB::table('password_reset_tokens')     // проверяем токен
             ->where('login', $login)
             ->first();
 
         if (!$record) {
-            return ['valid' => false, 'reason' => 'token_not_found'];
+            return ['valid' => false, 'reason' => 'token_not_found'];    // если нет
         }
 
         if (Carbon::parse($record->created_at)->addMinutes(self::EXPIRY_MINUTES)->isPast()) {
             $this->delete($login);
 
-            return ['valid' => false, 'reason' => 'expired'];
+            return ['valid' => false, 'reason' => 'expired'];      // если старый
         }
 
         if (!Hash::check($plainToken, $record->token)) {
-            return ['valid' => false, 'reason' => 'invalid'];
+            return ['valid' => false, 'reason' => 'invalid'];       // не подходит
         }
 
         return ['valid' => true];
     }
 
+    // предотвращаем повторное использование кода
     public function delete(string $login): void
     {
         DB::table('password_reset_tokens')

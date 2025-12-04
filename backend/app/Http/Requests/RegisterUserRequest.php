@@ -34,6 +34,7 @@ class RegisterUserRequest extends ApiFormRequest
         ];
     }
 
+    // телефон приводим к виду +7...
     protected function prepareForValidation(): void
     {
         $phone = $this->input('phone');

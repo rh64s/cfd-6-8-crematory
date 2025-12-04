@@ -10,7 +10,7 @@ use Throwable;
 
 class Handler extends ExceptionHandler
 {
-    protected $dontReport = [
+    protected $dontReport = [            // здесь то, что не логируется
         AuthenticationException::class,
         ModelNotFoundException::class,
         NotFoundHttpException::class,

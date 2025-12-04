@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Actions\Auth;
 
 use App\Exceptions\InvalidCredentialsException;
@@ -11,7 +12,7 @@ class LoginUserAction
      * @return array{user: User, token: string}
      * @throws InvalidCredentialsException
      */
-    public function handle(array $credentials): array
+    public function handle(array $credentials): array          // принимает массив с логином и паролем. определен в контроллере
     {
         if (!Auth::attempt($credentials)) {
             throw new InvalidCredentialsException();
@@ -27,4 +28,3 @@ class LoginUserAction
         ];
     }
 }
-

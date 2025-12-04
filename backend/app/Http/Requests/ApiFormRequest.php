@@ -13,6 +13,7 @@ class ApiFormRequest extends FormRequest
         return true;
     }
 
+    // единая валидация
     protected function failedValidation(Validator $validator): void
     {
         throw new HttpResponseException(

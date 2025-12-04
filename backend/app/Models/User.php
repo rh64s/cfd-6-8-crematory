@@ -11,6 +11,7 @@ use Illuminate\Support\Str;
 class User extends Authenticatable
 {
     use HasApiTokens, Notifiable;
+
     protected $fillable = [
         'first_name',
         'last_name',
@@ -33,6 +34,7 @@ class User extends Authenticatable
         'updated_at' => 'datetime',
     ];
 
+    // хэшируем пароль
     protected static function booted()
     {
         static::creating(function (self $user) {
@@ -47,11 +49,13 @@ class User extends Authenticatable
             }
         });
     }
+
     public function isAdmin(): bool
     {
         return (bool) $this->is_admin;
     }
 
+    // при удалении
     public function anonymize(): self
     {
         $this->update([
@@ -60,12 +64,14 @@ class User extends Authenticatable
             'patronymic' => null,
             'login' => 'deleted_' . $this->id,
             'email' => null,
-            'phone' => '+7000000000' . str_pad($this->id, 10, '0', STR_PAD_LEFT),
+            'phone' => '+7000000000' . str_pad($this->id, 9, '0', STR_PAD_LEFT),
             'password' => Hash::make(Str::random(60)),
         ]);
 
         return $this;
     }
+
+    // идентификатор
     public function getAuthIdentifierName()
     {
         return 'login';

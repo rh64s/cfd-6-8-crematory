@@ -7,7 +7,7 @@ class LoginUserRequest extends ApiFormRequest
     {
         return [
             'login' => ['required', 'string', 'between:6,32', 'regex:/^[a-zA-Z0-9]+$/'],
-            'password' => ['required', 'string'],
+            'password' => ['required', 'string'],               // тут я убрала проверку, только на наличие осталось
         ];
     }
 

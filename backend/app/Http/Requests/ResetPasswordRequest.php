@@ -1,8 +1,10 @@
 <?php
 
 namespace App\Http\Requests;
+
 class ResetPasswordRequest extends ApiFormRequest
 {
+    // для сброса пароля используем логин, код и новый пароль
     public function rules(): array
     {
         return [
