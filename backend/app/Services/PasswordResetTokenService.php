@@ -1,9 +1,10 @@
 <?php
+
 namespace App\Services;
 
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Carbon;
 
 class PasswordResetTokenService
 {
@@ -29,16 +30,17 @@ class PasswordResetTokenService
             ->where('login', $login)
             ->first();
 
-        if (! $record) {
+        if (!$record) {
             return ['valid' => false, 'reason' => 'token_not_found'];
         }
 
         if (Carbon::parse($record->created_at)->addMinutes(self::EXPIRY_MINUTES)->isPast()) {
             $this->delete($login);
+
             return ['valid' => false, 'reason' => 'expired'];
         }
 
-        if (! Hash::check($plainToken, $record->token)) {
+        if (!Hash::check($plainToken, $record->token)) {
             return ['valid' => false, 'reason' => 'invalid'];
         }
 
@@ -47,6 +49,8 @@ class PasswordResetTokenService
 
     public function delete(string $login): void
     {
-        DB::table('password_reset_tokens')->where('login', $login)->delete();
+        DB::table('password_reset_tokens')
+            ->where('login', $login)
+            ->delete();
     }
 }

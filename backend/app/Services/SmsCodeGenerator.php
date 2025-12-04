@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Services;
 
 class SmsCodeGenerator
@@ -7,6 +8,7 @@ class SmsCodeGenerator
     {
         $min = 10 ** ($length - 1);
         $max = (10 ** $length) - 1;
-        return str_pad((string) random_int($min, $max), $length, '0', STR_PAD_LEFT);
+
+        return str_pad((string)random_int($min, $max), $length, '0', STR_PAD_LEFT);
     }
 }

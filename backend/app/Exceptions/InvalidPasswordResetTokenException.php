@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Exceptions;
 
 use Exception;
@@ -9,10 +10,14 @@ class InvalidPasswordResetTokenException extends Exception
     {
         $messages = [
             'token_not_found' => 'Код восстановления не найден.',
-            'expired'         => 'Код восстановления устарел. Попробуйте снова.',
-            'invalid'         => 'Неверный код восстановления.',
+            'expired' => 'Код восстановления устарел. Попробуйте снова.',
+            'invalid' => 'Неверный код восстановления.',
         ];
 
-        parent::__construct($messages[$reason] ?? 'Неверный или устаревший код восстановления.', 400);
+        parent::__construct(
+            $messages[$reason] ?? 'Неверный или устаревший код восстановления.',
+            400
+        );
     }
 }
+

@@ -35,19 +35,18 @@ class User extends Authenticatable
 
     protected static function booted()
     {
-        static::creating(function ($user) {
-            if (! empty($user->password) && ! str_starts_with($user->password, '$2y$')) {
+        static::creating(function (self $user) {
+            if (! empty($user->password) && !str_starts_with($user->password, '$2y$')) {
                 $user->password = Hash::make($user->password);
             }
         });
 
-        static::updating(function ($user) {
-            if ($user->isDirty('password') && ! str_starts_with($user->password, '$2y$')) {
+        static::updating(function (self $user) {
+            if ($user->isDirty('password') && !str_starts_with($user->password, '$2y$')) {
                 $user->password = Hash::make($user->password);
             }
         });
     }
-
     public function isAdmin(): bool
     {
         return (bool) $this->is_admin;

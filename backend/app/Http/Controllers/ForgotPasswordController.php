@@ -1,32 +1,50 @@
 <?php
+
 namespace App\Http\Controllers\Auth;
 
+use App\Actions\Auth\ResetPasswordAction;
+use App\Actions\Auth\SendPasswordResetCodeAction;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ForgotPasswordRequest;
 use App\Http\Requests\ResetPasswordRequest;
-use App\Actions\Auth\SendPasswordResetCodeAction;
-use App\Actions\Auth\ResetPasswordAction;
 use Illuminate\Http\JsonResponse;
 
 class ForgotPasswordController extends Controller
 {
+    public function __construct(
+        protected SendPasswordResetCodeAction $sendPasswordResetCodeAction,
+        protected ResetPasswordAction         $resetPasswordAction,
+    )
+    {
+    }
+
     public function sendCode(ForgotPasswordRequest $request): JsonResponse
     {
-        $result = (new SendPasswordResetCodeAction())->handle($request->login);
-        return response()->json(
-            $result,
-            $result['success'] ? 200 : 404
-        );
+        $login = $request->validated()['login'];
+
+        $debugCode = $this->sendPasswordResetCodeAction->handle($login);
+
+        $response = [
+            'success' => true,
+            'toast' => 'Код восстановления отправлен на ваш телефон',
+        ];
+
+        if ($debugCode !== null) {
+            $response['_debug_sms_code'] = $debugCode;
+        }
+
+        return response()->json($response);
     }
 
     public function reset(ResetPasswordRequest $request): JsonResponse
     {
-        $result = (new ResetPasswordAction())
-            ->handle($request->login, $request->token, $request->password);
+        $data = $request->validated();
 
-        return response()->json(
-            $result,
-            $result['success'] ? 200 : 400
-        );
+        $this->resetPasswordAction->handle($data['login'], $data['token'], $data['password']);
+
+        return response()->json([
+            'success' => true,
+            'toast' => 'Пароль успешно изменён. Вы можете войти с новым паролем.',
+        ]);
     }
 }

@@ -8,14 +8,22 @@ use Illuminate\Http\Exceptions\HttpResponseException;
 
 class ApiFormRequest extends FormRequest
 {
+    public function authorize(): bool
+    {
+        return true;
+    }
+
     protected function failedValidation(Validator $validator): void
     {
-        throw new HttpResponseException(response()->json([
-            'error' => [
-                'code' => 400,
-                'message' => 'Пожалуйста, введите корректные данные.',
-                'details' => $validator->errors(),
-            ],
-        ], 400));
+        throw new HttpResponseException(
+            response()->json([
+                'success' => false,
+                'error' => [
+                    'code' => 422,
+                    'message' => 'Пожалуйста, введите корректные данные.',
+                    'details' => $validator->errors(),
+                ],
+            ], 422)
+        );
     }
 }
