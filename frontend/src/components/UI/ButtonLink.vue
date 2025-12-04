@@ -11,7 +11,7 @@
 .button-link{
   background: $link-btn;
   border: none;
-  border-radius: 50px;
+  border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
