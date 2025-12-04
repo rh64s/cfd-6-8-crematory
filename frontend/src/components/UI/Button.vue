@@ -17,6 +17,7 @@
   border-radius: 33px;
   color: $color-white;
   cursor: pointer;
+  transition: 0.3s;
 
   &:hover{
     background: $btn-color-hover;

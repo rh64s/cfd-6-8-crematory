@@ -7,7 +7,7 @@ import Button from "@/components/UI/Button.vue";
 <template>
   <header class="header">
     <div class="header__inner">
-      <h1>Крематорий</h1>
+      <a href="#"><h1>Крематорий</h1></a>
 
       <nav class="header__navigation">
         <p v-for="link of navLinkList" :key="link.text">
@@ -35,6 +35,7 @@ h1 {
     padding: 0 10px;
     display: flex;
     justify-content: space-between;
+    align-items: center;
   }
 
   &__navigation {
