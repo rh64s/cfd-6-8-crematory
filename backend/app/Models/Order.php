@@ -12,10 +12,17 @@ class Order extends Model
         'urn_delivery_place',
         'cancellation_reason',
     ];
-    public const CREATED_AT = 'creation_date';
+    public $timestamps = false;
     protected $casts = [
         'updated_at' => 'datetime',
         'creation_date' => 'datetime',
         'status' => 'string',
     ];
+    protected static function boot()
+    {
+        parent::boot();
+        static::creating(function ($model) {
+           $model->creation_date = $model->freshTimestamp();
+        });
+    }
 }
