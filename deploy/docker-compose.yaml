@@ -1,29 +1,10 @@
 #version: '3.8'
 
 services:
-  back:
-    container_name: crem_back
-    build:
-      context: ./php
-      dockerfile: php.DockerFile
-    volumes:
-      - ../backend/:/var/www/laravel
-    networks:
-      - crem_net
-    restart: unless-stopped
-    depends_on:
-      - db
-#    command: bash -c "composer install && php artisan key:generate && php artisan migrate && tail -F /dev/null"
-#    command: tail -F /dev/null
-
   db:
     container_name: crem_db
-    image: 'postgres:17-alpine'
     restart: no
-    user: postgres
-    build:
-      context: postgres
-      dockerfile: postgres.DockerFile
+    image: postgres:18-alpine
     environment:
       POSTGRES_DB: "postgres"
       POSTGRES_USER: "postgres"
@@ -32,6 +13,22 @@ services:
       - postgres-data:/var/lib/postgresql/data/
     networks:
       - crem_net
+
+
+
+  back:
+    container_name: crem_back
+    build:
+      context: ..
+      dockerfile: deploy/php/php.DockerFile
+    volumes:
+      - ../backend/:/var/www/laravel
+    restart: unless-stopped
+    depends_on:
+      - db
+    networks:
+      - crem_net
+
 
   pgadmin:
     container_name: crem_pgadmin
@@ -58,9 +55,8 @@ services:
       - "80:80"
     volumes:
       - ./proxy/nginx.conf:/etc/nginx/conf.d/default.conf:ro
-      - ../backend/:/var/www/laravel
       - ../frontend/:/var/www/front
-      - pgadmin-data:/var/lib/pgadmin
+      - ../backend/:/var/www/laravel
     depends_on:
       - db
       - back
@@ -71,20 +67,17 @@ services:
   front:
     container_name: crem_front
     build:
-      context: proxy
-      dockerfile: proxy.DockerFile
+      context: ..
+      dockerfile: deploy/proxy/proxy.DockerFile
     ports:
       - "5173:5173"
-#    volumes:
-#      - ../frontend/:/var/www/frontend
+    volumes:
+      - ../frontend/:/var/www/frontend
     depends_on:
       - db
       - back
     networks:
       - crem_net
-#    command: bash -c "npm install --save-dev nodemon && npm run build"
-#    entrypoint: ["npm run dev"]
-
 
 
 volumes:
