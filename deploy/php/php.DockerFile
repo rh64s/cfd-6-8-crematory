@@ -8,5 +8,6 @@ WORKDIR /var/www/backend
 
 COPY deploy/php/entrypoint.sh /usr/bin/
 RUN chmod +x /usr/bin/entrypoint.sh && chmod -R 755 /var/www/backend
-
+EXPOSE 9000
 #RUN #composer install --no-dev --optimize-autoloader
+#CMD ["php", "-S", "0.0.0.0:9000", "-t", "/var/www/html/public"]

@@ -20,3 +20,6 @@ Route::prefix('auth')->group(function () {
         Route::post('/change-password', [ProfileController::class, 'changePassword']);
     });
 });
+Route::get('/test', function () { return response()->json([
+    'status' => 'OK',
+],200); });
