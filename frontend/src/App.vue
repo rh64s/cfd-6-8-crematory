@@ -1,7 +1,6 @@
 <script setup lang="ts">
-
-import AppHeader from "@/components/shared/AppHeader.vue";
-import AppHome from "@/components/shared/AppHome.vue";
+import AppHeader from "@/components/shared/app/AppHeader.vue";
+import AppHome from "@/pages/AppHome.vue";
 </script>
 
 <template>
@@ -22,5 +21,10 @@ import AppHome from "@/components/shared/AppHome.vue";
   flex-direction: column;
   align-items: center;
   row-gap: 100px;
+}
+
+h2 {
+  font-size: 2.4rem;
+  font-weight: $font-weight-light;
 }
 </style>
