@@ -9,3 +9,4 @@ COPY entrypoint.sh /usr/bin/
 RUN chmod +x /usr/bin/entrypoint.sh
 
 WORKDIR /var/www/laravel
+ENTRYPOINT ["php"]
