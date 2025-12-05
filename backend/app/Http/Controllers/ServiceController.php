@@ -22,7 +22,7 @@ class ServiceController extends Controller
 
         return response()->json([
             'success' => true,
-            'data'    => ServiceResource::collection($services),
+            'data' => ServiceResource::collection($services),
         ]);
     }
 
@@ -33,7 +33,7 @@ class ServiceController extends Controller
 
         return response()->json([
             'success' => true,
-            'data'    => new ServiceResource($service),
+            'data' => new ServiceResource($service),
         ]);
     }
 }
