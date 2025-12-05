@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Throwable;
+use App\Exceptions\InvalidCurrentPasswordException;
+
 
 class Handler extends ExceptionHandler
 {
@@ -16,8 +18,9 @@ class Handler extends ExceptionHandler
         NotFoundHttpException::class,
         InvalidPasswordResetTokenException::class,
         InvalidCredentialsException::class,
-    ];
+        InvalidCurrentPasswordException::class,
 
+    ];
     protected $dontFlash = [
         'current_password',
         'password',
@@ -71,6 +74,16 @@ class Handler extends ExceptionHandler
                     'message' => 'Запрашиваемый ресурс не найден.',
                 ],
             ], 404);
+        }
+
+        if ($e instanceof InvalidCurrentPasswordException) {
+            return response()->json([
+                'success' => false,
+                'error'   => [
+                    'code'    => 400,
+                    'message' => $e->getMessage(),
+                ],
+            ], 400);
         }
 
         if (! app()->environment('local')) {
