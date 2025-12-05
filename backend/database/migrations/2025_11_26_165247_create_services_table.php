@@ -22,7 +22,7 @@ return new class extends Migration
             $table->dateTime('updated_at')->nullable();
         });
 //        DB::statement('ALTER TABLE services ADD CONSTRAINT price > 0');
-        DB::statement('ALTER TABLE services ADD CONSTRAINT valid_price CHECK ( price >= 0 )');
+        //DB::statement('ALTER TABLE services ADD CONSTRAINT valid_price CHECK ( price >= 0 )');
     }
 
     /**

@@ -11,6 +11,7 @@ use Illuminate\Support\Str;
 class User extends Authenticatable
 {
     use HasApiTokens, Notifiable;
+
     protected $fillable = [
         'first_name',
         'last_name',
@@ -33,16 +34,17 @@ class User extends Authenticatable
         'updated_at' => 'datetime',
     ];
 
+    // хэшируем пароль
     protected static function booted()
     {
-        static::creating(function ($user) {
-            if (! empty($user->password) && ! str_starts_with($user->password, '$2y$')) {
+        static::creating(function (self $user) {
+            if (! empty($user->password) && !str_starts_with($user->password, '$2y$')) {
                 $user->password = Hash::make($user->password);
             }
         });
 
-        static::updating(function ($user) {
-            if ($user->isDirty('password') && ! str_starts_with($user->password, '$2y$')) {
+        static::updating(function (self $user) {
+            if ($user->isDirty('password') && !str_starts_with($user->password, '$2y$')) {
                 $user->password = Hash::make($user->password);
             }
         });
@@ -53,6 +55,7 @@ class User extends Authenticatable
         return (bool) $this->is_admin;
     }
 
+    // при удалении
     public function anonymize(): self
     {
         $this->update([
@@ -61,10 +64,16 @@ class User extends Authenticatable
             'patronymic' => null,
             'login' => 'deleted_' . $this->id,
             'email' => null,
-            'phone' => '+7000000000' . str_pad($this->id, 10, '0', STR_PAD_LEFT),
+            'phone' => '+7000000000' . str_pad($this->id, 9, '0', STR_PAD_LEFT),
             'password' => Hash::make(Str::random(60)),
         ]);
 
         return $this;
+    }
+
+    // идентификатор
+    public function getAuthIdentifierName()
+    {
+        return 'login';
     }
 }
