@@ -6,17 +6,15 @@ import Button from "@/components/UI/Button.vue";
 
 <template>
   <header class="header">
-    <div class="header__inner">
-      <a href="#"><h1>Крематорий</h1></a>
+    <a href="#"><h1>Крематорий</h1></a>
 
-      <nav class="header__navigation">
-        <p v-for="link of navLinkList" :key="link.text">
-          <navigation-link :link="link.text" :href="link.link">{{ link.text }}</navigation-link>
-        </p>
-      </nav>
+    <nav class="header__navigation">
+      <p v-for="link of navLinkList" :key="link.text">
+        <navigation-link :link="link.text" :href="link.link">{{ link.text }}</navigation-link>
+      </p>
+    </nav>
 
-      <Button>войти</Button>
-    </div>
+    <Button>войти</Button>
   </header>
 </template>
 
@@ -29,16 +27,9 @@ h1 {
 
 .header {
   width: 100%;
-
-  &__inner {
-    max-width: 1540px;
-    width: 100%;
-    margin: 0 auto;
-    padding: 0 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
   &__navigation {
     display: flex;

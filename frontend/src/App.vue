@@ -1,18 +1,23 @@
 <script setup lang="ts">
 
 import AppHeader from "@/components/shared/AppHeader.vue";
-import SupportMessage from "@/components/shared/SupportMessage.vue";
+import AppHome from "@/components/shared/AppHome.vue";
 </script>
 
 <template>
-  <app-header />
+  <div class="wrapper">
+    <app-header />
 
-  <support-message />
+    <app-home />
+  </div>
 </template>
 
 <style lang="scss">
-#app {
-  margin-top: 50px;
+.wrapper {
+  max-width: 1540px;
+  width: 100%;
+  padding: 0 10px;
+  margin: 50px auto 0;
   display: flex;
   flex-direction: column;
   align-items: center;
