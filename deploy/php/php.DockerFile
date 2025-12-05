@@ -6,8 +6,8 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 WORKDIR /var/www/laravel
 COPY ../../backend /var/www/laravel
 
-#COPY deploy/php/entrypoint.sh /usr/bin/
-#RUN chmod +x /usr/bin/entrypoint.sh
+COPY deploy/php/entrypoint.sh /usr/bin/
+RUN chmod +x /usr/bin/entrypoint.sh
 
 WORKDIR /var/www/laravel
 RUN composer install --no-dev --optimize-autoloader
