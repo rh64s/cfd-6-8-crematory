@@ -1,0 +1,28 @@
+@use "fonts" as *;
+
+/*Переменные для шрифтов*/
+$font-primary: "Inter";
+$font-weight-regular: 400;
+$font-weight-bold: 700;
+$font-weight-medium: 500;
+$font-weight-light: 300;
+$font-style-light: italic;
+
+/*Переменные для цветов*/
+$color-gray: #464646;
+$color-gray-dark: #1B1B1B;
+$color-black: #000000;
+$color-white: #ffffff;
+$color-leather: #CDAC9B;
+$color-leather-input: #EAC3AE;
+$color-leather-dark: #B09587;
+
+
+/*Цвета компонентов*/
+$btn-color: $color-gray;
+$btn-color-hover: #696969;
+$btn-color-active: #2E2E2E;
+
+$link-btn: $color-leather;
+$link-btn-hover: $color-leather-input;
+$link-btn-active: #B19587;
