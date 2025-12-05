@@ -1,6 +1,6 @@
 FROM node:current-alpine
 
-WORKDIR /var/www/front
+WORKDIR /var/www/frontend
 
 COPY ../../frontend/package* ./
 RUN npm install
