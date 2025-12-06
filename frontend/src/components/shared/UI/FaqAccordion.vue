@@ -109,20 +109,20 @@ const toggleOpen = () => {
   &__header {
     @extend .base-block;
     justify-content: space-between;
-    padding: 10px 52px;
+    padding: 20px 52px;
     cursor: pointer;
   }
 
   &__title {
     font-family: "Inter", sans-serif;
     font-weight: normal;
-    font-size: 1.2rem;
+    font-size: 1.25rem;
   }
 
   &__content {
     max-height: 0;
     font-family: "Inter", sans-serif;
-    font-size: 1.2rem;
+    font-size: 1.25rem;
     overflow: hidden;
     margin: 20px 50px;
     transition: max-height 0.3s ease;
