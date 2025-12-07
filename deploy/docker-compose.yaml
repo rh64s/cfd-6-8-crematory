@@ -5,10 +5,13 @@ services:
     container_name: crem_db
     restart: no
     image: postgres:18-alpine
-    environment:
-      POSTGRES_DB: "postgres"
-      POSTGRES_USER: "postgres"
-      POSTGRES_PASSWORD: "postgrespasswordlaravel"
+#    environment:
+#      POSTGRES_DB: "postgres"
+#      POSTGRES_USER: "postgres"
+#      POSTGRES_PASSWORD: "postgrespasswordlaravel"
+
+    env_file:
+      - postgres.env
     volumes:
       - postgres-data:/var/lib/postgresql/data/
     deploy:
@@ -36,11 +39,13 @@ services:
   pgadmin:
     container_name: crem_pgadmin
     image: 'dpage/pgadmin4:9.8'
-    environment:
-      PGADMIN_DEFAULT_EMAIL: "admin@example.com"
-      PGADMIN_DEFAULT_PASSWORD: "postgrespasswordlaravel"
-      PGADMIN_CONFIG_SERVER_MODE: "False"
-      PGADMIN_LISTEN_PORT: 5050
+#    environment:
+#      PGADMIN_DEFAULT_EMAIL: "admin@example.com"
+#      PGADMIN_DEFAULT_PASSWORD: "postgrespasswordlaravel"
+#      PGADMIN_CONFIG_SERVER_MODE: "False"
+#      PGADMIN_LISTEN_PORT: 5050
+    env_file:
+      - pgadmin.env
     restart: no
     ports:
       - "5050:5050"
