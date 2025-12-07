@@ -33,3 +33,16 @@ docker exec crem_back entrypoint.sh
 Frontend: <http://localhost:80/>
 
 Обращение к API: <http://localhost:80/api/>
+
+### Остановка и последующаяа очистка
+
+Для остановки контейнеров:
+```terminaloutput
+docker compose down
+```
+
+Остановка контейнера и последующее удаление томов (volumes)
+```terminaloutput
+docker compose down -v
+```
+это приведет к очистке и позволит начать базу данных с чистого листа
