@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import ButtonLink from './ButtonLink.vue';
+import ButtonLink from './button/ButtonLink.vue';
 import type { Services } from "@/utilities/types.ts";
 
 interface IProps {
@@ -35,6 +35,7 @@ const props = defineProps<IProps>()
   padding: 40px 20px;
   gap: 24px;
   align-items: flex-start;
+  max-width: 494px;
 
   &__header{
     display: flex;

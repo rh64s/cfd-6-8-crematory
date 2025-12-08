@@ -2,7 +2,7 @@
 
 </script>
 <template>
-  <a class="navigation-link" href="/">
+  <a class="navigation-link" href="/frontend/public">
     <slot class="navigation"></slot>
   </a>
 </template>
