@@ -48,7 +48,7 @@ services:
       - pgadmin.env
     restart: no
     ports:
-      - "5050:5050"
+      - "5050:9003"
     volumes:
       - pgadmin-data:/var/lib/pgadmin
     depends_on:
@@ -60,7 +60,7 @@ services:
     container_name: crem_web
     image: 'nginx:stable-alpine'
     ports:
-      - "80:80"
+      - "80:9001"
     volumes:
       - ./proxy/nginx.conf:/etc/nginx/conf.d/default.conf:ro
       - ../frontend/:/var/www/frontend
