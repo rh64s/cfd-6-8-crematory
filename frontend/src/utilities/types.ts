@@ -22,3 +22,11 @@ export interface Question {
   text: string;
   isOpen: boolean;
 }
+
+export interface Employees {
+  id: number;
+  avatarLink: string;
+  fullName: string;
+  position: string;
+  task: string;
+}
