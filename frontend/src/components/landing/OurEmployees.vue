@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import {employeesList} from "@/utilities/employeesCard.ts";
-import CardEmployees from "@/components/shared/UI/CardEmployees.vue";
+import CardEmployees from "@/components/shared/UI/card/CardEmployees.vue";
 </script>
 
 <template>

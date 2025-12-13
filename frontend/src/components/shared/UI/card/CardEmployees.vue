@@ -7,7 +7,7 @@ interface iProps {
 
 defineProps<iProps>()
 const getImageUrl = (name: string) => {
-  return new URL(`../../../assets/image/employees/${name}`, import.meta.url).href
+  return new URL(`../../../../assets/image/employees/${name}`, import.meta.url).href
 }
 </script>
 

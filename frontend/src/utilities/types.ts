@@ -30,3 +30,10 @@ export interface Employees {
   position: string;
   task: string;
 }
+
+export interface Urn {
+  id: number;
+  imageLink: string;
+  name: string;
+  priceRange: string;
+}

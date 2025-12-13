@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import NavigationLink from "@/components/shared/UI/NavigationLink.vue";
 import {navLinkList} from "@/utilities/navLink.ts";
-import Button from "@/components/shared/UI/button/Button.vue";
+import TheButton from "@/components/shared/UI/button/TheButton.vue";
 </script>
 
 <template>
@@ -14,7 +14,7 @@ import Button from "@/components/shared/UI/button/Button.vue";
       </p>
     </nav>
 
-    <Button>войти</Button>
+    <TheButton>войти</TheButton>
   </header>
 </template>
 

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import {questions} from "@/utilities/qustionAccordion.ts";
+import {questions} from "@/utilities/questionsAccordion.ts";
 import FaqAccordion from "@/components/shared/UI/FaqAccordion.vue";
 </script>
 
