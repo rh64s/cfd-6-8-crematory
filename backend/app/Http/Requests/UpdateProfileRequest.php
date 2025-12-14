@@ -11,17 +11,15 @@ class UpdateProfileRequest extends ApiFormRequest
         $userId = $this->user()->id;
 
         return [
-            'first_name' => ['required', 'string', 'between:2,255', 'regex:/^[а-яА-ЯёЁa-zA-Z\s\-\'\x{0400}-\x{04FF}]+$/u'],
-            'last_name' => ['required', 'string', 'between:2,255', 'regex:/^[а-яА-ЯёЁa-zA-Z\s\-\'\x{0400}-\x{04FF}]+$/u'],
-            'patronymic' => ['nullable', 'string', 'between:2,255', 'regex:/^[а-яА-ЯёЁa-zA-Z\s\-\'\x{0400}-\x{04FF}]+$/u'],
+            'first_name' => ['string', 'between:2,255', 'regex:/^[а-яА-ЯёЁa-zA-Z\s\-\'\x{0400}-\x{04FF}]+$/u'],
+            'last_name' => ['string', 'between:2,255', 'regex:/^[а-яА-ЯёЁa-zA-Z\s\-\'\x{0400}-\x{04FF}]+$/u'],
+            'patronymic' => ['string', 'between:2,255', 'regex:/^[а-яА-ЯёЁa-zA-Z\s\-\'\x{0400}-\x{04FF}]+$/u'],
             'phone' => [
-                'required',
                 'string',
                 'regex:/^[\+]?[0-9\(\)\s\-]{10,20}$/',
                 Rule::unique('users', 'phone')->ignore($userId),
             ],
             'email' => [
-                'nullable',
                 'email',
                 Rule::unique('users', 'email')->ignore($userId),
             ],
