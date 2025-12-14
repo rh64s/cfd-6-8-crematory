@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Actions\User\ChangePasswordAction;
 use App\Actions\User\UpdateUserProfileAction;
-use App\Http\Requests\ChangePasswordRequest;
-use App\Http\Requests\UpdateProfileRequest;
+use App\Http\Requests\User\ChangePasswordRequest;
+use App\Http\Requests\User\UpdateProfileRequest;
 use App\Http\Resources\UserResource;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
