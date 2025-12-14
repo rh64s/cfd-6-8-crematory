@@ -12,8 +12,8 @@ use Illuminate\Http\Request;
 
 class ProfileController extends Controller
 {
+
     public function __construct(
-        protected UpdateUserProfileAction $updateUserProfileAction,
         protected ChangePasswordAction    $changePasswordAction,
     ) {
     }
@@ -30,16 +30,7 @@ class ProfileController extends Controller
     // обновить профиль
     public function update(UpdateProfileRequest $request): JsonResponse
     {
-        $user = $request->user();
-        $data = $request->validated();
-
-        $updatedUser = $this->updateUserProfileAction->handle($user, $data);
-
-        return response()->json([
-            'success' => true,
-            'data'    => new UserResource($updatedUser),
-            'toast'   => 'Профиль успешно обновлён',
-        ]);
+        return UpdateUserProfileAction::handle($request);
     }
 
     // смена пароля

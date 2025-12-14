@@ -3,29 +3,29 @@
 namespace App\Actions\Auth;
 
 use App\Exceptions\InvalidCredentialsException;
+use App\Http\Resources\UserResource;
 use App\Models\User;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class LoginUserAction
 {
-    /**
-     * @return array{user: User, token: string}
-     * @throws InvalidCredentialsException
-     */
-    public function handle(array $credentials): array          // принимает массив с логином и паролем. определен в контроллере
+    public static function handle(Request $request): JsonResponse
     {
-        if (!Auth::attempt($credentials)) {
+        if (!Auth::attempt($request->only(['login', 'password']))) {
             throw new InvalidCredentialsException();
         }
 
         /** @var User $user */
         $user = Auth::user();
-        $token = $user->createToken('auth-token')->plainTextToken;
+        $token = CreateUserToken::handle($user);
 
-        return [
-            'user' => $user,
+        return response()->json([
+            'message' => 'Вы успешно вошли в аккаунт',
+            'user' => UserResource::make($user),
             'token' => $token,
-        ];
+        ], 200);
     }
 }
 
