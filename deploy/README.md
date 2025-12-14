@@ -57,10 +57,10 @@ docker compose down -v
 
 1. Registration
 2. Задаем любое название, переходим в Connection
-   2.1 Host: db
-   2.2 Port: 5432
-   2.3 Maintance database: postgres
-   2.4 Username: postgres
-   2.5 Password: postgrespasswordlaravel
+3. Host: db
+4. Port: 5432
+5. Maintance database: postgres
+6. Username: postgres
+7. Password: postgrespasswordlaravel
 
 Теперь, при переходе в схемы, в таблицы, вы сможете увидеть все интересующие таблицы и данные внутри
