@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 
 class LogoutUserAction
 {
-    public function handle(): JsonResponse
+    public static function handle(): JsonResponse
     {
         /*
          * Здесь просто удаляем токен для текущего пользователя, и говорим, что все норм

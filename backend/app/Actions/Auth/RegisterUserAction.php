@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 
 class RegisterUserAction
 {
-    public function handle(Request $request): JsonResponse
+    public static function handle(Request $request): JsonResponse
     {
         /*
          * Создаем пользователя из тех всех данных, что прилетают из запроса
