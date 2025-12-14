@@ -1,7 +1,7 @@
 <script setup lang="ts">
 
 import { servicesList } from "@/utilities/servicesCard.ts";
-import CardServices from "../shared/UI/CardServices.vue";
+import CardServices from "../shared/UI/card/CardServices.vue";
 </script>
 
 <template>

@@ -15,6 +15,10 @@ import AppFooter from "@/components/shared/app/AppFooter.vue";
 </template>
 
 <style lang="scss">
+html {
+  scroll-behavior: smooth;
+}
+
 .wrapper {
   max-width: 1540px;
   width: 100%;

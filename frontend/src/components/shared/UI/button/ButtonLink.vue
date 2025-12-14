@@ -17,6 +17,7 @@
   align-items: center;
   padding: 10px;
   cursor: pointer;
+  transition: 0.3s;
 
   &:hover{
     background: $link-btn-hover;
