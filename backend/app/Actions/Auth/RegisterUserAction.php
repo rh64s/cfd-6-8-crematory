@@ -18,8 +18,7 @@ class RegisterUserAction
 
         $user = User::create($request->validated());
         return response()->json([
-            'user' => UserResource::make($user),
-            'token' => CreateUserToken::handle($user)
+            'message' => 'Вы успешно прошли регистрацию',
         ], 201);
         /*
          * Сразу выдаем токен пользователю, чтобы не пришлось по новой регистрироваться
