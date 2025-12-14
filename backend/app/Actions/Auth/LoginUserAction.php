@@ -11,13 +11,9 @@ use Illuminate\Support\Facades\Auth;
 
 class LoginUserAction
 {
-    /**
-     * @return JsonResponse
-     * @throws InvalidCredentialsException
-     */
     public static function handle(Request $request): JsonResponse
     {
-        if (!Auth::attempt($request)) {
+        if (!Auth::attempt($request->only(['login', 'password']))) {
             throw new InvalidCredentialsException();
         }
 
