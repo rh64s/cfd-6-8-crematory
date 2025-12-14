@@ -14,12 +14,14 @@ Route::prefix('auth')->group(function () {
     Route::post('/reset-password', [ForgotPasswordController::class, 'reset']);
 });
 
-Route::middleware('auth:sanctum')->prefix('auth')->group(function () {
-    Route::post('/logout', [AuthController::class, 'logout']);
-    Route::get('/me', [ProfileController::class, 'me']);
-    Route::put('/profile', [ProfileController::class, 'update']);
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'me']);
+    Route::patch('/profile', [ProfileController::class, 'update']);
     Route::post('/change-password', [ProfileController::class, 'changePassword']);
 
+    Route::prefix('auth')->group(function () {
+        Route::post('/logout', [AuthController::class, 'logout']);
+    });
     Route::middleware('admin')->prefix('admin')->group(function () {
         Route::apiResource('services', AdminServiceController::class);
     });
