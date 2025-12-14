@@ -13,45 +13,22 @@ use Illuminate\Http\Request;
 
 class AuthController extends Controller
 {
-    public function __construct(
-        protected RegisterUserAction $registerUserAction,
-        protected LoginUserAction    $loginUserAction,
-        protected LogoutUserAction   $logoutUserAction,
-    )
-    {
-    }
+//    лучше action как статические вызывать
+//      то есть, не создавая объект класса, можем вызвать его метод
+//    это один из способов работать с ними, но, так как мы в action сильно не углубляемся, то отдельный пакет не будет докачивать
 
     public function register(RegisterUserRequest $request): JsonResponse
     {
-        $user = $this->registerUserAction->handle($request->validated());
-
-        return response()->json([
-            'success' => true,
-            'data' => new UserResource($user),
-            'toast' => 'Вы успешно прошли регистрацию',
-        ], 201);
+        return RegisterUserAction::handle($request);
     }
 
-    public function login(LoginUserRequest $request, LoginUserAction $action): JsonResponse
+    public function login(LoginUserRequest $request): JsonResponse
     {
-        $credentials = $request->validated();
-        $result = $action->handle($credentials);
-
-        return response()->json([
-            'success' => true,
-            'data' => new UserResource($result['user']),
-            'token' => $result['token'],
-            'toast' => 'Вы успешно вошли в систему',
-        ]);
+        return LoginUserAction::handle($request);
     }
 
     public function logout(Request $request): JsonResponse
     {
-        $this->logoutUserAction->handle($request->user());
-
-        return response()->json([
-            'success' => true,
-            'toast' => 'Вы успешно вышли из системы',
-        ]);
+        return LogoutUserAction::handle();
     }
 }
