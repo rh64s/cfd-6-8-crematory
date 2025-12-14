@@ -10,12 +10,12 @@ import UrnsAshes from "@/components/landing/UrnsAshes.vue";
 
 <template>
   <support-message />
-  <about-us />
-  <card-services />
+  <about-us id="about" />
+  <card-services id="services" />
   <urns-ashes />
-  <not-alone />
-  <our-employees />
-  <frequent-questions />
+  <not-alone id="intimate" />
+  <our-employees id="employees" />
+  <frequent-questions id="questions" />
 </template>
 
 <style scoped lang="scss">

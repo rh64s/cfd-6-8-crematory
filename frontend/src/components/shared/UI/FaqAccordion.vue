@@ -16,7 +16,7 @@ const toggleOpen = () => {
 </script>
 
 <template>
-  <div class="accordion">
+  <article class="accordion">
     <div @click="toggleOpen" class="accordion__header" :class="{ 'is-open': isOpen }">
       <h3 class="accordion__title">{{ question.title }}</h3>
       <div class="accordion__arrows">
@@ -29,7 +29,7 @@ const toggleOpen = () => {
       :style="{maxHeight: isOpen ? '150px' : '0px' }"
       v-html="question.text"
     ></div>
-  </div>
+  </article>
 </template>
 
 <style scoped lang="scss">
