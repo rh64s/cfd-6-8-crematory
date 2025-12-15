@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import ButtonLink from './button/ButtonLink.vue';
+import ButtonLink from '../button/ButtonLink.vue';
 import type { Services } from "@/utilities/types.ts";
 
 interface IProps {

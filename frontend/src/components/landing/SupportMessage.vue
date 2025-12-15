@@ -28,7 +28,7 @@
       text-decoration-line: underline;
       text-decoration-style: wavy;
       text-decoration-color: $color-gray;
-      text-underline-offset: 4px;
+      text-underline-offset: 6px;
       text-decoration-thickness: 3px;
     }
   }
