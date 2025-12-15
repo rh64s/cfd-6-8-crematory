@@ -18,7 +18,7 @@ class RegisterUserRequest extends ApiFormRequest
             'last_name' => ['required', 'string', 'between:2,255', 'regex:/^[а-яА-ЯёЁa-zA-Z\s\-\'\x{0400}-\x{04FF}]+$/u'],
             'patronymic' => ['nullable', 'string', 'between:2,255', 'regex:/^[а-яА-ЯёЁa-zA-Z\s\-\'\x{0400}-\x{04FF}]+$/u'],
             'login' => ['required', 'string', 'between:6,32', 'unique:users,login', 'regex:/^[a-zA-Z0-9]+$/'],
-            'phone' => ['required', 'string', 'regex:/^[\+]?[0-9\(\)\s\-]{10,20}$/', 'unique:users,phone'],
+            'phone' => ['required', 'string', 'regex:/^[\+][0-9\(\)\s\-]{10,20}$/', 'unique:users,phone'],
             'email' => ['nullable', 'email', 'unique:users,email'],
             'password' => ['required', 'string', 'min:8', 'regex:/[A-Z]/', 'regex:/[0-9]/'],
         ];
