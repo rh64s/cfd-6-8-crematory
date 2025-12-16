@@ -3,35 +3,39 @@
 
 
 <template>
-  <label class="label">
-    <input class="input" type="text" placeholder="" />
-  </label>
+    <input class="input" type="text">
 </template>
 
 
 <style lang="scss" scoped>
-.label{
+.input{
+  width: 100%;
   color: $color-gray;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.25);
   border-radius: 33px;
   border:  1px solid rgba(217, 218, 242, 1) ;
   padding: 13px 30px;
-  transition: border .2s ease-in-out;
-}
-.input{
+  transition: border .1s ease-in-out;
   font-family: "Inter", sans-serif;
-  border: none;
+
+    &:hover{
+      border: 3px solid rgba(217, 218, 242, 1);
+      cursor: pointer;
+    }
+
+    &:focus{
+      color: $color-gray;
+      font-family: "Inter", sans-serif;
+      outline: none;
+      border: 3px solid rgba(217, 218, 242, 1);
+
+    }
+
+  &::placeholder{
+    font-size: 1rem;
+    font-family: "Inter", sans-serif;
+    color: $color-gray;
+  }
 }
-.label:hover{
-  border: 3px solid rgba(217, 218, 242, 1);
-}
-.input:focus{
-  color: $color-gray;
-  font-family: "Inter", sans-serif;
-  outline: none;
-  border: 1px solid rgba(217, 218, 242, 1);
-}
-.input:focus .label{
-  border: 3px solid rgba(217, 218, 242, 1);
-}
+
 </style>
