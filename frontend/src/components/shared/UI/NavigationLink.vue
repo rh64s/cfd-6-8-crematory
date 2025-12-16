@@ -1,14 +1,22 @@
 <script setup lang="ts">
+import type {RouteLocationRaw} from "vue-router";
+import type {PropType} from "vue";
 
+defineProps({
+  href: {
+    type: [String, Object] as PropType<string | RouteLocationRaw>,
+    required: true
+  }
+});
 </script>
+
 <template>
-  <a class="navigation-link" href="/frontend/public">
+  <router-link :to="href" class="navigation-link">
     <slot class="navigation"></slot>
-  </a>
+  </router-link>
 </template>
+
 <style scoped lang="scss">
-
-
 .navigation-link{
   font-size: 18px;
   text-decoration: none;

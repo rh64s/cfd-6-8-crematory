@@ -6,11 +6,11 @@ import TheButton from "@/components/shared/UI/button/TheButton.vue";
 
 <template>
   <header class="header">
-    <a href="#"><h1>Крематорий</h1></a>
+    <router-link to="/"><h1>Крематорий</h1></router-link>
 
     <nav class="header__navigation">
       <p v-for="link of navLinkList" :key="link.text">
-        <navigation-link :link="link.text" :href="link.link">{{ link.text }}</navigation-link>
+        <navigation-link :href="{ path: '/', hash: link.link }">{{ link.text }}</navigation-link>
       </p>
     </nav>
 
