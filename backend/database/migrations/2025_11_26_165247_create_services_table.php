@@ -18,8 +18,7 @@ return new class extends Migration
             $table->string('description')->nullable();
             $table->decimal('price', 10, 2);
             $table->boolean('is_active')->default(true);
-            $table->dateTime('created_at')->default(Carbon\Carbon::now());
-            $table->dateTime('updated_at')->nullable();
+            $table->timestamps();
         });
 //        DB::statement('ALTER TABLE services ADD CONSTRAINT price > 0');
         //DB::statement('ALTER TABLE services ADD CONSTRAINT valid_price CHECK ( price >= 0 )');

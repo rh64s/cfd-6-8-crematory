@@ -1,6 +1,8 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\User;
+use App\Http\Requests\ApiFormRequest;
+
 class ForgotPasswordRequest extends ApiFormRequest
 {
     // для отправки кода восстановления используем логин
