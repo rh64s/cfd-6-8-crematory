@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+
 class Service extends Model
 {
     use HasFactory;
@@ -23,5 +25,9 @@ class Service extends Model
     public function scopeActive($query)
     {
         return $query->where('is_active', true);
+    }
+    public function orders(): HasMany
+    {
+        return $this->hasMany(OrderService::class);
     }
 }
