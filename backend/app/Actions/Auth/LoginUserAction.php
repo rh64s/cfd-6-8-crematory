@@ -22,12 +22,12 @@ class LoginUserAction
         $token = CreateUserToken::handle($user);
 
         return response()->json([
-            'message' => 'Вы успешно вошли в аккаунт',
-            'user' => UserResource::make($user),
-            'token' => $token,
+            'success' => true,
+            'toast' => 'Вы успешно вошли в аккаунт',
+            'data' => [
+                'user' => UserResource::make($user),
+                'token' => $token,
+            ],
         ], 200);
     }
 }
-
-
-

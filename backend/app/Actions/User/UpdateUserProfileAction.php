@@ -17,9 +17,9 @@ class UpdateUserProfileAction
         $user = Auth::user();
         $user->update($request->validated());
         return response()->json([
+            "success" => true,
+            "toast" => 'Профиль успешно обновлён',
             "data" => UserResource::make($user),
-            'toast'   => 'Профиль успешно обновлён',
         ]);
     }
 }
-

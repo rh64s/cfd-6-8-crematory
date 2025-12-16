@@ -10,26 +10,30 @@ class ResetPasswordAction
 {
     public function __construct(
         protected PasswordResetTokenService $tokenService
-    )
-    {
+    ) {
     }
 
-    /**
-     * @throws InvalidPasswordResetTokenException
-     */
-    public function handle(string $login, string $token, string $password): void
-    {
-        $validation = $this->tokenService->validate($login, $token);        // проверяем токен
-        if (!$validation['valid']) {
-            throw new InvalidPasswordResetTokenException($validation['reason'] ?? 'invalid');
+    public function handle(
+        string $identifier,
+        string $type,
+        string $token,
+        string $newPassword
+    ): void {
+        $validation = $this->tokenService->validate($identifier, $type, $token);
+
+        if (! $validation['valid']) {
+            throw new InvalidPasswordResetTokenException(
+                $validation['reason'] ?? 'invalid'
+            );
         }
 
-        /** @var User $user */
-        $user = User::where('login', $login)->firstOrFail();      // ищем юзера
+        $user = User::query()
+            ->where($type, $identifier)
+            ->firstOrFail();
 
-        $user->password = $password;      // смена пароля
+        $user->password = $newPassword;
         $user->save();
 
-        $this->tokenService->delete($login);        // удаление токена
+        $this->tokenService->delete($identifier, $type);
     }
 }

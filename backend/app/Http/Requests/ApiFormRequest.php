@@ -13,16 +13,19 @@ class ApiFormRequest extends FormRequest
         return true;
     }
 
-    // единая валидация
     protected function failedValidation(Validator $validator): void
     {
+        $errors = $validator->errors();
+        $firstError = $errors->first();
+        $message = "Пожалуйста введите корректные данные.($firstError)";
+
         throw new HttpResponseException(
             response()->json([
                 'success' => false,
                 'error' => [
-                    'code' => 422,
-                    'message' => 'Пожалуйста, введите корректные данные.',
-                    'details' => $validator->errors(),
+                    'code' => 400,
+                    'message' => $message,
+                    'details' => $errors->toArray(),
                 ],
             ], 400)
         );

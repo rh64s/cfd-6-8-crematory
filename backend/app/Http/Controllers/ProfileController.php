@@ -4,36 +4,37 @@ namespace App\Http\Controllers;
 
 use App\Actions\User\ChangePasswordAction;
 use App\Actions\User\UpdateUserProfileAction;
+use App\Actions\User\ShowUserAction;
+use App\Actions\User\DeleteUserAction;
 use App\Http\Requests\ChangePasswordRequest;
 use App\Http\Requests\UpdateProfileRequest;
-use App\Http\Resources\UserResource;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class ProfileController extends Controller
 {
-
     public function __construct(
-        protected ChangePasswordAction    $changePasswordAction,
-    ) {
-    }
+        protected ChangePasswordAction $changePasswordAction,
+        protected UpdateUserProfileAction $updateUserProfileAction,
+        protected ShowUserAction $showUserAction,
+        protected DeleteUserAction $deleteUserAction,
+    ) {}
 
-    // получить данные юзера
     public function me(Request $request): JsonResponse
     {
-        return response()->json([
-            'success' => true,
-            'data'    => new UserResource($request->user()),
-        ]);
+        return $this->showUserAction->handle($request->user(), $request->user()->id);
     }
 
-    // обновить профиль
+    public function show(Request $request, int $id): JsonResponse
+    {
+        return $this->showUserAction->handle($request->user(), $id);
+    }
+
     public function update(UpdateProfileRequest $request): JsonResponse
     {
-        return UpdateUserProfileAction::handle($request);
+        return $this->updateUserProfileAction->handle($request);
     }
 
-    // смена пароля
     public function changePassword(ChangePasswordRequest $request): JsonResponse
     {
         $user = $request->user();
@@ -43,7 +44,18 @@ class ProfileController extends Controller
 
         return response()->json([
             'success' => true,
-            'toast'   => 'Пароль успешно изменён',
+            'toast' => 'Пароль успешно изменён',
+            'data' => null,
+        ]);
+    }
+
+    public function destroy(Request $request): JsonResponse
+    {
+        $this->deleteUserAction->handle($request->user(), $request->user());
+
+        return response()->json([
+            'success' => true,
+            'toast'   => 'Аккаунт удалён',
         ]);
     }
 }

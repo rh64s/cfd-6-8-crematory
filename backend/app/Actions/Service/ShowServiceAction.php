@@ -3,11 +3,14 @@
 namespace App\Actions\Service;
 
 use App\Models\Service;
+use Illuminate\Support\Facades\Gate;
 
 class ShowServiceAction
 {
     public function handle(int $id): Service
     {
-        return Service::where('id', $id)->where('is_active', true)->firstOrFail();
+        $service = Service::findOrFail($id);
+
+        return $service;
     }
 }
