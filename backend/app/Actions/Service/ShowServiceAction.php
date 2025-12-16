@@ -2,12 +2,26 @@
 
 namespace App\Actions\Service;
 
+use App\Http\Resources\ServiceResource;
 use App\Models\Service;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Gate;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class ShowServiceAction
 {
-    public function handle(int $id): Service
+    public static function handle(Service $service)
     {
-        return Service::where('id', $id)->where('is_active', true)->firstOrFail();
+        if (Gate::allows('admin-action', $service)) {
+            return response()->json([
+                'data' => new ServiceResource($service)
+            ]);
+        } else {
+            return $service->isActive == true ?
+                response()->json([
+                    'data' => $service
+                ]) :
+                throw new NotFoundHttpException();
+        }
     }
 }

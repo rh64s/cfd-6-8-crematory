@@ -2,24 +2,20 @@
 
 namespace App\Actions\Service;
 
+use App\Http\Resources\ServiceResource;
 use App\Models\Service;
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\Gate;
 
 class ListServicesAction
 {
-    /**
-     * @return Collection<int, Service>
-     */
-    public function handle(bool $onlyActive = true): Collection
+    public static function handle()
     {
-        $query = Service::query();
-
-        if ($onlyActive) {
-            $query->active();
-        }
-
-        return $query
-            ->orderBy('name')
-            ->get();
+        return response()->json([
+            "data" => ServiceResource::collection(
+                Gate::allows('admin-action') ?
+                    Service::all() :
+                    Service::all()->filter(function ($service) {return $service->is_active;})
+            )
+        ]);
     }
 }
