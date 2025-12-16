@@ -1,17 +1,9 @@
 <script setup lang="ts">
-import type {RouteLocationRaw} from "vue-router";
-import type {PropType} from "vue";
 
-defineProps({
-  href: {
-    type: [String, Object] as PropType<string | RouteLocationRaw>,
-    required: true
-  }
-});
 </script>
 
 <template>
-  <router-link :to="href" class="navigation-link">
+  <router-link to="/" class="navigation-link">
     <slot class="navigation"></slot>
   </router-link>
 </template>

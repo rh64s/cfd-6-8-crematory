@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import NavigationLink from '@/components/shared/UI/NavigationLink.vue';
 import {navLinkList} from "@/utilities/navLink.ts";
 import {ref} from "vue";
 import type {NavLink} from "@/utilities/types.ts";

@@ -10,7 +10,7 @@ import TheButton from "@/components/shared/UI/button/TheButton.vue";
 
     <nav class="header__navigation">
       <p v-for="link of navLinkList" :key="link.text">
-        <navigation-link :href="{ path: '/', hash: link.link }">{{ link.text }}</navigation-link>
+        <navigation-link :href="`/${link.link}`">{{ link.text }}</navigation-link>
       </p>
     </nav>
 

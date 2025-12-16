@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import AppHeader from "@/components/shared/app/AppHeader.vue";
-import AppHome from "@/pages/AppHome.vue";
 import AppFooter from "@/components/shared/app/AppFooter.vue";
 </script>
 
