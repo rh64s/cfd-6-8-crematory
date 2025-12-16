@@ -19,6 +19,13 @@ class Service extends Model
     protected $casts = [
         'price' => 'decimal:2',
         'is_active' => 'boolean',
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
+    ];
+
+    protected $hidden = [
+        'created_at',
+        'updated_at',
     ];
 
     // только активные услуги
