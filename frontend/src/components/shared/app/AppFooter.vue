@@ -6,7 +6,6 @@ import type {NavLink} from "@/utilities/types.ts";
 
 const links = ref<NavLink[]>([])
 links.value = navLinkList.slice(0, navLinkList.length - 1)
-console.log(links.value)
 </script>
 
 <template>
