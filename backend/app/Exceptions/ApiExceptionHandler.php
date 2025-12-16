@@ -46,7 +46,8 @@ class ApiExceptionHandler
         }
 
         if (! app()->environment('local')) {
-            return $this->errorResponse(500, 'Внутренняя ошибка сервера. Мы уже работаем над её устранением.');
+            return $this->errorResponse(502,
+                'Временные неполадки на нашей стороне. Мы уже решаем проблему. Пожалуйста, подождите.');
         }
 
         return null;

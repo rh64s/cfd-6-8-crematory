@@ -24,7 +24,7 @@ class ApiFormRequest extends FormRequest
                     'message' => 'Пожалуйста, введите корректные данные.',
                     'details' => $validator->errors(),
                 ],
-            ], 422)
+            ], 400)
         );
     }
 }

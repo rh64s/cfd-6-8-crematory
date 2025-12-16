@@ -16,7 +16,7 @@ class InvalidPasswordResetTokenException extends Exception
 
         parent::__construct(
             $messages[$reason] ?? 'Неверный или устаревший код восстановления.',
-            400
+            401
         );
     }
 }
