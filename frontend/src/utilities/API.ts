@@ -1,10 +1,10 @@
 import axios from 'axios';
-import type {UserRegister} from '@/utilities/types.ts'
+import type {UserRegister} from '@/utilities/typesApi.ts'
 
 const localhost =  'https://example.com/api'
 
 
-export const register = (userData :UserRegister) => axios.post(localhost + "/register",  userData)
+export const register = (userData :UserRegister) => axios.post(localhost + "/auth/register",  userData)
 
 
 
