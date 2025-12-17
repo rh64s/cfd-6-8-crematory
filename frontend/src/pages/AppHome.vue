@@ -16,18 +16,7 @@ const formatProductName = (item: Urn) => {
   item.name = item.name.split(" ")[1] ?? "Нет данных";
 }
 
-const arrayLinkImageUrns = ["metal.png", "tree.png", "ceramics.png", "biodegradable.png", "plastic.png"];
-const urnsList = ref([])
-const servicesList = ref([])
-
-onMounted(async () => {
-  const data = await apiStore.fetchDataApi()
-
-  servicesList.value = data.filter((item: Services) => {
-    return item.name.split(' ')[0] !== 'Урна'
-  })
-  servicesList.value = servicesList.value.slice(1, -1)
-
+const formattingUrnData = (data: any) => { // any плохо использовать, но я не знаю что сюда пихнуть
   urnsList.value = data.filter((item: Urn) => {
     return item.name.split(' ')[0] === 'Урна'
   })
@@ -36,8 +25,26 @@ onMounted(async () => {
     formatProductName(item)
     item.imageLink = arrayLinkImageUrns[index] ?? "Картинки нет";
   })
+}
 
+const formattingServiceData = (data: any) => { // any плохо использовать, но я не знаю что сюда пихнуть
+  servicesList.value = data.filter((item: Services) => {
+    return item.name.split(' ')[0] !== 'Урна'
+  })
+  servicesList.value = servicesList.value.slice(1, -1)
   servicesList.value = JSON.parse(JSON.stringify(servicesList.value))
+}
+
+const arrayLinkImageUrns = ["metal.png", "tree.png", "ceramics.png", "biodegradable.png", "plastic.png"];
+const urnsList = ref([])
+const servicesList = ref([])
+
+onMounted(async () => {
+  const data = await apiStore.fetchDataApi()
+
+  formattingServiceData(data)
+
+  formattingUrnData(data)
 })
 </script>
 
