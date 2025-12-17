@@ -1,7 +1,7 @@
 import {ref, computed, createApp} from 'vue'
 import { defineStore } from 'pinia'
-import type {UserLogin, UserRegister} from '@/utilities/typesApi.ts'
-import { register } from '@/utilities//API.ts'
+import type {UserLogin, UserRegister} from '@/utilities/API/typesApi.ts'
+import { register } from '@/utilities/API/API.ts'
 
 
 export const users = defineStore('user', () => {
