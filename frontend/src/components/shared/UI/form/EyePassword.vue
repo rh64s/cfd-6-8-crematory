@@ -1,19 +1,20 @@
 <script setup lang="ts">
-import {ref} from "vue";
-const check = ref<boolean>(false)
+  import {ref} from "vue";
 
-const passwordCheck = () => (
-  check.value = !check.value
-)
+
+  interface IProps {
+    check?: boolean
+  }
+  const props = defineProps<IProps>()
+
 
 </script>
 
 <template>
   <div
-    @click="passwordCheck"
     class="eye">
     <svg
-      v-if="!check"
+      v-if="check"
       class="eye__icon"
       width="30" height="23" viewBox="0 0 30 23" xmlns="http://www.w3.org/2000/svg">
       <path d="M28.7977 7.59785C25.7621 2.90601 20.5796 0.0524547 14.9987 0C9.41779 0.0524547 4.23529 2.90601 1.19977 7.59785C-0.399923 9.9497 -0.399923 13.0427 1.19977 15.3946C4.23358 20.0893 9.41638 22.9458 14.9987 23C20.5796 22.9475 25.7621 20.094 28.7977 15.4022C30.4008 13.0485 30.4008 9.95141 28.7977 7.59785ZM25.6916 13.2622C23.374 16.9448 19.3441 19.1915 14.9987 19.2237C10.6533 19.1915 6.6234 16.9448 4.30579 13.2622C3.58328 12.1989 3.58328 10.8011 4.30579 9.73775C6.62334 6.05524 10.6533 3.80854 14.9987 3.77627C19.3441 3.80848 23.374 6.05524 25.6916 9.73775C26.4141 10.8011 26.4141 12.1989 25.6916 13.2622Z" fill="currentColor"/>
@@ -34,7 +35,7 @@ const passwordCheck = () => (
 .eye{
   display: flex;
   width: 31px;
-  height: 31px;
+  height: 18px;
   justify-content: center;
   align-items: center;
 }
