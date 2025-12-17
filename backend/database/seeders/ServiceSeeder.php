@@ -64,7 +64,6 @@ class ServiceSeeder extends Seeder
             'name' => 'Урна биоразлагаемая',
             'description' => 'Биоразлагаемая урна, которая разложится в течении 12 месяцев',
             'price' => 6500,
-            'is_active' => false
         ]);
         Service::create([
             'name' => 'Урна чугунная',
