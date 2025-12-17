@@ -23,7 +23,7 @@ return new class extends Migration
             $table->date('date_of_death');
             $table->text('cause_of_death')->nullable();
             $table->text('comment')->nullable();
-            $table->dateTime('created_at')->default(\Carbon\Carbon::now());
+            $table->timestamp('created_at');
         });
     }
 

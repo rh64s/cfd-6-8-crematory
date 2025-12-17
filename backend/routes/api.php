@@ -5,7 +5,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\ServiceController;
-use App\Http\Controllers\Admin\ServiceController as AdminServiceController;
 
 Route::prefix('auth')->group(function () {
     Route::post('/register', [AuthController::class, 'register']);
@@ -13,6 +12,8 @@ Route::prefix('auth')->group(function () {
     Route::post('/forgot-password', [ForgotPasswordController::class, 'sendCode']);
     Route::post('/reset-password', [ForgotPasswordController::class, 'reset']);
 });
+
+Route::apiResource('/services', ServiceController::class, ['only' => ['index', 'show']]);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/profile', [ProfileController::class, 'me']);
@@ -22,10 +23,5 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::prefix('auth')->group(function () {
         Route::post('/logout', [AuthController::class, 'logout']);
     });
-    Route::middleware('admin')->prefix('admin')->group(function () {
-        Route::apiResource('services', AdminServiceController::class);
-    });
+    Route::apiResource('/services', ServiceController::class, ['except' => ['index', 'show']]);
 });
-
-Route::get('/services', [ServiceController::class, 'index']);
-Route::get('/services/{id}', [ServiceController::class, 'show']);

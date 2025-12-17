@@ -4,6 +4,7 @@ namespace App\Exceptions;
 
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Throwable;
 use Illuminate\Http\JsonResponse;
@@ -49,17 +50,17 @@ class ApiExceptionHandler
             return $this->errorResponse(500, 'Внутренняя ошибка сервера. Мы уже работаем над её устранением.');
         }
 
+        if ($e instanceof AccessDeniedHttpException) {
+            return $this->errorResponse(403, 'Доступ запрещен');
+        }
+
         return null;
     }
 
     protected function errorResponse(int $code, string $message): JsonResponse
     {
         return response()->json([
-            'success' => false,
-            'error'   => [
-                'code'    => $code,
-                'message' => $message,
-            ],
+            'message' => $message,
         ], $code);
     }
 }

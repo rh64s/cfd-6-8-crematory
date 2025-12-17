@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('first_name', 255);
             $table->string('phone', 20);
+            $table->string('question', 1000);
         });
     }
 

@@ -2,38 +2,44 @@
 
 namespace App\Http\Controllers;
 
+use App\Actions\Service\CreateServiceAction;
 use App\Actions\Service\ListServicesAction;
 use App\Actions\Service\ShowServiceAction;
-use App\Http\Resources\ServiceResource;
+use App\Actions\Service\UpdateServiceAction;
+use App\Http\Requests\Service\StoreServiceRequest;
+use App\Http\Requests\Service\UpdateServiceRequest;
+use App\Models\Service;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 
 class ServiceController extends Controller
 {
-    public function __construct(
-        protected ListServicesAction $listServicesAction,
-        protected ShowServiceAction  $showServiceAction,
-    ) {
+
+    public function index(Request $request): JsonResponse
+    {
+        return ListServicesAction::handle($request);
     }
 
-    // список
-    public function index(): JsonResponse
+    public function show(Service $service): JsonResponse
     {
-        $services = $this->listServicesAction->handle(true);
-
-        return response()->json([
-            'success' => true,
-            'data' => ServiceResource::collection($services),
-        ]);
+        return ShowServiceAction::handle($service);
     }
 
-    // карточка
-    public function show(int $id): JsonResponse
+    public function store(StoreServiceRequest $request): JsonResponse
     {
-        $service = $this->showServiceAction->handle($id);
+        return CreateServiceAction::handle($request);
+    }
 
+    public function update(UpdateServiceRequest $request, Service $service): JsonResponse
+    {
+        return UpdateServiceAction::handle($request, $service);
+    }
+
+    public function destroy(Service $service): JsonResponse
+    {
+        $service->delete();
         return response()->json([
-            'success' => true,
-            'data' => new ServiceResource($service),
-        ]);
+            "message" => "Успешно удалено"
+        ], 200);
     }
 }

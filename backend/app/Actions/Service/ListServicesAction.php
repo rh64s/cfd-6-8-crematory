@@ -2,24 +2,23 @@
 
 namespace App\Actions\Service;
 
+use App\Http\Resources\ServiceResource;
 use App\Models\Service;
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class ListServicesAction
 {
-    /**
-     * @return Collection<int, Service>
-     */
-    public function handle(bool $onlyActive = true): Collection
+    public static function handle(Request $request)
     {
-        $query = Service::query();
-
-        if ($onlyActive) {
-            $query->active();
+        if(auth("sanctum")->check() && auth("sanctum")->user()->isAdmin()){
+            return response()->json([
+                "data" => ServiceResource::collection(Service::all())
+            ]);
         }
-
-        return $query
-            ->orderBy('name')
-            ->get();
+        return response()->json([
+            "data" => ServiceResource::collection(Service::all()->where("is_active", "==", true)->all())
+        ]);
     }
 }
