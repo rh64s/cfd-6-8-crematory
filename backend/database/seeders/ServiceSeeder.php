@@ -66,6 +66,11 @@ class ServiceSeeder extends Seeder
             'price' => 6500,
             'is_active' => false
         ]);
+        Service::create([
+            'name' => 'Урна чугунная',
+            'description' => 'Чугунная урна прямиком из Китая',
+            'price' => 5000,
+        ]);
 
         // Транспорт
         Service::create([
