@@ -10,7 +10,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class ShowServiceAction
 {
-    public static function handle(Service $service)
+    public static function handle(Service $service): JsonResponse
     {
         if(auth("sanctum")->user()->isAdmin()){
             return response()->json([
