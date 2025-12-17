@@ -7,7 +7,7 @@ import AppFooter from "@/components/shared/app/AppFooter.vue";
   <div class="wrapper">
     <app-header />
 
-    <router-view></router-view>
+    <router-view />
   </div>
 
   <app-footer />
