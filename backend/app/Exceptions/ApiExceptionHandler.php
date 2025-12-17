@@ -60,11 +60,7 @@ class ApiExceptionHandler
     protected function errorResponse(int $code, string $message): JsonResponse
     {
         return response()->json([
-            'success' => false,
-            'error'   => [
-                'code'    => $code,
-                'message' => $message,
-            ],
+            'message' => $message,
         ], $code);
     }
 }

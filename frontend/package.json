@@ -16,7 +16,12 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+<<<<<<< HEAD
     "pinia": "^3.0.4",
+=======
+    "axios": "^1.13.2",
+    "pinia": "^3.0.3",
+>>>>>>> 8c49b617c4fe720f24c6f496d093797e36155153
     "vue": "^3.5.22",
     "vue-router": "^4.6.3"
   },
