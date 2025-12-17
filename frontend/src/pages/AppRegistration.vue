@@ -121,6 +121,7 @@
           />
           <span v-if="errors.password2" class="error">{{ errors.password2 }}</span>
         </div>
+        <span v-if="store.errorRegistr" class="error"> {{ store.errorRegistr }}</span>
       </div>
       <div class="form__checkbox">
         <label class="label">

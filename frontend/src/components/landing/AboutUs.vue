@@ -20,7 +20,6 @@
           и санитарные разрешения.</a>
       </div>
     </div>
-
     <div class="about-us__contacts">
       <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A157700d00dd962f33ae5cdb9134634c8abfce63ded8e193fa2b54801acfcac2a&amp;source=constructor"
               width="620" height="240" class="about-us__map"></iframe>
