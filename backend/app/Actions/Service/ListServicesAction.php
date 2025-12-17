@@ -12,9 +12,7 @@ class ListServicesAction
 {
     public static function handle(Request $request)
     {
-        // обращение к sanctum и прямая просьба к нему узнать авторизован ли пользователь
-        // требуется для работы sanctum, не объявляя sanctum middleware в маршруте
-        if(auth("sanctum")->user()->isAdmin()){
+        if(auth("sanctum")->check() && auth("sanctum")->user()->isAdmin()){
             return response()->json([
                 "data" => ServiceResource::collection(Service::all())
             ]);

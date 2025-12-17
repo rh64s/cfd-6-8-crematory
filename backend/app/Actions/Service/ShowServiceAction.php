@@ -12,7 +12,7 @@ class ShowServiceAction
 {
     public static function handle(Service $service): JsonResponse
     {
-        if(auth("sanctum")->user()->isAdmin()){
+        if(auth("sanctum")->check() && auth("sanctum")->user()->isAdmin()){
             return response()->json([
                 'data' => new ServiceResource($service)
             ]);
