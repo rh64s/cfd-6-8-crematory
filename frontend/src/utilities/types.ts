@@ -7,8 +7,10 @@ export interface NavLink {
 
 export interface Services {
   id: number;
-  summary: string;
-  text: string;
+  name: string;
+  price: string;
+  description: string;
+  is_active: boolean;
 }
 
 export interface Accordion {
@@ -36,5 +38,7 @@ export interface Urn {
   id: number;
   imageLink: string;
   name: string;
-  priceRange: string;
+  price: string;
+  description: string;
+  is_active: boolean;
 }

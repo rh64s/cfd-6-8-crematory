@@ -19,7 +19,7 @@ const getImageUrl = (name: string) => {
 
     <div class="urn-ashes-card__info">
       <h3 class="urn-ashes-card__name">{{ urn.name }}</h3>
-      <p class="urn-ashes-card__price-range">{{ urn.priceRange }}</p>
+      <p class="urn-ashes-card__price-range">от {{ urn.price }} &#x20BD;</p>
     </div>
   </article>
 </template>
@@ -53,6 +53,10 @@ const getImageUrl = (name: string) => {
   &__name {
     font-size: 1.25rem;
     font-weight: $font-weight-regular;
+
+    &::first-letter {
+      text-transform: uppercase;
+    }
   }
 
   &__price-range {
