@@ -14,7 +14,9 @@ import TheButton from "@/components/shared/UI/button/TheButton.vue";
       </p>
     </nav>
 
-    <TheButton>войти</TheButton>
+    <router-link to="/register">
+      <TheButton>войти</TheButton>
+    </router-link>
   </header>
 </template>
 

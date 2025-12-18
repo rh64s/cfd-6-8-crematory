@@ -1,5 +1,3 @@
-
-
 export interface NavLink {
   text: string;
   link: string;
@@ -11,12 +9,6 @@ export interface Services {
   price: string;
   description: string;
   is_active: boolean;
-}
-
-export interface Accordion {
-  id: number;
-  title: string;
-  text: string;
 }
 
 export interface Question {
@@ -41,4 +33,9 @@ export interface Urn {
   price: string;
   description: string;
   is_active: boolean;
+}
+
+export interface PersonalInformation {
+  name: string;
+  description: string;
 }
