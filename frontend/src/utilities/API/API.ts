@@ -1,5 +1,5 @@
-import axios from 'axios';
 import type {UserRegister, UserLogin} from '@/utilities/API/typesApi.ts'
+import axios from "axios";
 
 const localhost =  'http://localhost/api'
 
