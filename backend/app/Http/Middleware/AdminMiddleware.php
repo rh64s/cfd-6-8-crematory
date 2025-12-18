@@ -15,7 +15,7 @@ class AdminMiddleware
             return response()->json([
                 'error' => [
                     'code' => 403,
-                    'message' => 'Доступ запрещён.',
+                    'toast' => 'Доступ запрещён.',
                 ],
             ], 403);
         }

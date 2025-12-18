@@ -9,9 +9,6 @@ use Illuminate\Support\Facades\Hash;
 
 class ChangePasswordAction
 {
-    /**
-     * @throws InvalidCurrentPasswordException
-     */
     public static function handle(ChangePasswordRequest $request): JsonResponse
     {
         $user = $request->user();
