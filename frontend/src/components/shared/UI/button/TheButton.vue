@@ -1,8 +1,13 @@
 <script setup lang="ts">
 
+  interface IProps {
+    type?: "button" | "reset" | "submit" ;
+  }
+  const props = defineProps<IProps>()
+
 </script>
 <template>
-  <button type="button" class="button">
+  <button :type="type ?? 'button' " class="button">
     <slot></slot>
   </button>
 </template>

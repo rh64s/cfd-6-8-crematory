@@ -1,33 +1,31 @@
 <script setup lang="ts">
 import ButtonLink from '../button/ButtonLink.vue';
-import type { Services } from "@/utilities/types.ts";
+import type {Services} from "@/utilities/types.ts";
 
-interface IProps {
-  service: Services
+interface iProps {
+  service: Services;
 }
 
-const props = defineProps<IProps>()
-
-
+defineProps<iProps>()
 </script>
 <template>
   <article class="card-services">
     <div class="card-services__header">
       <div class="card-services__text-block">
-        <h3 class="card-services__title">пакет {{ service.id }}</h3>
-        <p class="card-services__summary"> от {{ service.summary }}&#8381</p>
+        <h3 class="card-services__title">{{ service.name }}</h3>
+        <p class="card-services__summary"> от {{ service.price   }} &#8381</p>
       </div>
       <div>
         <button-link />
       </div>
     </div>
-    <p class="card-services__content">{{ service.text }}</p>
+    <p class="card-services__content">{{ service.description }}</p>
   </article>
 </template>
 
 
 <style scoped lang="scss">
-.card-services{
+.card-services {
   height: 100%;
   @extend .base-block;
   display: flex;
@@ -36,6 +34,8 @@ const props = defineProps<IProps>()
   gap: 24px;
   align-items: flex-start;
   max-width: 494px;
+  width: 100%;
+  justify-content: flex-start;
 
   &__header{
     display: flex;
@@ -66,6 +66,11 @@ const props = defineProps<IProps>()
     font-weight: $font-weight-regular;
     font-size: 1.2rem;
     max-width: 80%;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 }
 </style>

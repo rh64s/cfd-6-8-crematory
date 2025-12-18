@@ -1,6 +1,12 @@
 <script setup lang="ts">
-import {urnsAshes} from "@/utilities/UrnsAshesCard.ts";
 import CardUrnAshes from "@/components/shared/UI/card/CardUrnAshes.vue";
+import type {Urn} from "@/utilities/types.ts";
+
+interface iProps {
+  urnsList: Urn[]
+}
+
+defineProps<iProps>()
 </script>
 
 <template>
@@ -8,7 +14,7 @@ import CardUrnAshes from "@/components/shared/UI/card/CardUrnAshes.vue";
     <h2 class="urns-ashes__title">Урны для праха</h2>
 
     <div class="urns-ashes__list">
-      <div class="urns-ashes__card" v-for="urn of urnsAshes" :key="urn.id">
+      <div class="urns-ashes__card" v-for="urn of urnsList" :key="urn.id">
         <card-urn-ashes
           :urn="urn"
         />
