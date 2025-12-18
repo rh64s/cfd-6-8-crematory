@@ -28,6 +28,25 @@ const router = createRouter({
       component: UserProfile,
     }
   ],
+  scrollBehavior(to, from, savedPosition) {
+    if (to.hash) {
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          const element = document.getElementById(to.hash.slice(1))
+          if (element) {
+            resolve({
+              el: element,
+              behavior: 'smooth'
+            })
+          } else {
+            resolve({ top: 0 })
+          }
+        }, 100)
+      })
+    }
+
+    return { top: 0 }
+  }
 })
 
 export default router
