@@ -4,9 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Actions\Auth\ResetPasswordAction;
 use App\Actions\Auth\SendPasswordResetCodeAction;
-use App\Http\Controllers\Controller;
-use App\Http\Requests\ForgotPasswordRequest;
-use App\Http\Requests\ResetPasswordRequest;
+use App\Http\Requests\User\ForgotPasswordRequest;
+use App\Http\Requests\User\ResetPasswordRequest;
 use Illuminate\Http\JsonResponse;
 
 class ForgotPasswordController extends Controller

@@ -13,8 +13,7 @@ Route::prefix('auth')->group(function () {
     Route::post('/reset-password', [ForgotPasswordController::class, 'reset']);
 });
 
-Route::get('/services', [ServiceController::class, 'index']);
-Route::get('/services/{id}', [ServiceController::class, 'show']);
+Route::apiResource('/services', ServiceController::class, ['only' => ['index', 'show']]);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/profile', [ProfileController::class, 'me']);

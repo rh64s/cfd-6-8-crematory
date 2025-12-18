@@ -5,9 +5,8 @@ namespace App\Http\Controllers;
 use App\Actions\Auth\LoginUserAction;
 use App\Actions\Auth\LogoutUserAction;
 use App\Actions\Auth\RegisterUserAction;
-use App\Http\Requests\LoginUserRequest;
-use App\Http\Requests\RegisterUserRequest;
-use App\Http\Resources\UserResource;
+use App\Http\Requests\User\LoginUserRequest;
+use App\Http\Requests\User\RegisterUserRequest;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 

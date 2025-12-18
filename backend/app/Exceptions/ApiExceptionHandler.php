@@ -4,6 +4,7 @@ namespace App\Exceptions;
 
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Throwable;
 use Illuminate\Http\JsonResponse;
@@ -66,7 +67,9 @@ class ApiExceptionHandler
         if ($e->getCode() == 422 && str_contains($e->getMessage(), 'почт')) {
             return $this->errorResponse(422, 'К сожалению мы не можем отправить документы выбранным способом.');
         }
-
+        if ($e instanceof AccessDeniedHttpException) {
+            return $this->errorResponse(403, 'Доступ запрещен');
+        }
         if (!app()->environment('production')) {
             return $this->errorResponse(500, $e->getMessage());
         }
@@ -77,11 +80,7 @@ class ApiExceptionHandler
     protected function errorResponse(int $code, string $message): JsonResponse
     {
         return response()->json([
-            'success' => false,
-            'error' => [
-                'code' => $code,
-                'message' => $message,
-            ],
+            'toast' => $message,
         ], $code);
     }
 }

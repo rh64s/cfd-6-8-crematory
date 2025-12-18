@@ -18,7 +18,7 @@ return new class extends Migration
             $table->text('file_path');
             $table->string('encryption_key_ref', 255);
             $table->boolean('uploaded_by_admin')->default(false);
-            $table->dateTime('created_at')->default(Carbon\Carbon::now());
+            $table->timestamp('created_at');
         });
     }
 

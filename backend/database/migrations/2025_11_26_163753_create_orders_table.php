@@ -15,11 +15,14 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained();
             $table->enum('status', ['pending', 'confirmed', 'in_progress', 'completed', 'cancelled'], 50)->default('pending');
-            $table->dateTime('creation_date')->default(Carbon\Carbon::now());
-            $table->dateTime('updated_at')->nullable(); // on update current_timestamp?
+            $table->timestamps();
             $table->dateTime('cremation_date')->nullable();
             $table->text('urn_delivery_place');
             $table->text('cancellation_reason')->nullable();
+
+            $table->dateTime('confirmed_at')->nullable(); // >= creation_date
+            $table->dateTime('in_progress_at')->nullable(); // >= confirmed_at
+            $table->dateTime('completed_at')->nullable(); // >= in_progress_at
         });
     }
 
