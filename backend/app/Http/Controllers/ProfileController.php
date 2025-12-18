@@ -4,46 +4,43 @@ namespace App\Http\Controllers;
 
 use App\Actions\User\ChangePasswordAction;
 use App\Actions\User\UpdateUserProfileAction;
-use App\Http\Requests\User\ChangePasswordRequest;
-use App\Http\Requests\User\UpdateProfileRequest;
-use App\Http\Resources\UserResource;
+use App\Actions\User\ShowUserAction;
+use App\Actions\User\DeleteUserAction;
+use App\Actions\User\ListUsersAction;
+use App\Http\Requests\ChangePasswordRequest;
+use App\Http\Requests\UpdateProfileRequest;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class ProfileController extends Controller
 {
-
-    public function __construct(
-        protected ChangePasswordAction    $changePasswordAction,
-    ) {
-    }
-
-    // получить данные юзера
     public function me(Request $request): JsonResponse
     {
-        return response()->json([
-            'success' => true,
-            'data'    => new UserResource($request->user()),
-        ]);
+        return ShowUserAction::handle($request, $request->user()->id);
     }
 
-    // обновить профиль
+    public function show(Request $request, int $id): JsonResponse
+    {
+        return ShowUserAction::handle($request, $id);
+    }
+
+    public function list(Request $request): JsonResponse
+    {
+        return ListUsersAction::handle($request);
+    }
+
     public function update(UpdateProfileRequest $request): JsonResponse
     {
         return UpdateUserProfileAction::handle($request);
     }
 
-    // смена пароля
     public function changePassword(ChangePasswordRequest $request): JsonResponse
     {
-        $user = $request->user();
-        $data = $request->validated();
+        return ChangePasswordAction::handle($request);
+    }
 
-        $this->changePasswordAction->handle($user, $data['current_password'], $data['password']);
-
-        return response()->json([
-            'success' => true,
-            'toast'   => 'Пароль успешно изменён',
-        ]);
+    public function destroy(Request $request): JsonResponse
+    {
+        return DeleteUserAction::handle($request);
     }
 }
