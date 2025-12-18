@@ -10,6 +10,8 @@
     password?: boolean,
   }
 
+  const model = defineModel()
+
   const props = defineProps<IProps>()
 
   const typePassword = ref<string>(props.type ?? 'text')
@@ -24,7 +26,7 @@
 <template>
 
   <label class="label">
-    <input class="input" :type="typePassword" :placeholder="placeholder" :required="required">
+    <input class="input" :type="typePassword" v-model="model" :placeholder="placeholder" :required="required">
     <div v-if="password">
       <eye-password :check="typePassword == 'password'" @click="passwordCheck" />
     </div>
@@ -47,6 +49,9 @@
   width: 100%;
   font-family: $font-primary;
   border: none;
+}
+.input:hover::placeholder{
+  color: $btn-color-hover;
 }
 .label:hover{
   outline: 2px solid rgba(217, 218, 242, 1);

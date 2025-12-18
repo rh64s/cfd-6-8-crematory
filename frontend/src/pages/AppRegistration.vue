@@ -2,7 +2,22 @@
   import FormInput from "@/components/shared/UI/form/FormInput.vue"
   import TheButton from "@/components/shared/UI/button/TheButton.vue";
   import type { UserRegister } from "@/utilities/API/typesApi.ts";
-  import {ref} from "vue";
+  import {computed, ref} from "vue";
+  import {
+    errors,
+    validateName,
+    validateLastName,
+    validatePatronymic,
+    validateLogin,
+    validatePhone,
+    validatePassword,
+    validateEmail,
+    validatePassword2
+  } from "@/utilities/validators.ts";
+  import { useUsersStore } from "@/stores/UserStore.ts";
+
+  const store = useUsersStore()
+  const errorsArea = computed(() => errors)
 
   const FormData = ref<UserRegister>({
     first_name: '',
@@ -15,68 +30,97 @@
   })
 
 
-
-
 </script>
 
 <template>
   <section class="registration">
     <h1 class="registration__title">Регистрация</h1>
-    <form class="form" @submit.prevent="SubmitRegister">
-      <div class="form__block">
-        <form-input
-          :v-model="FormData.first_name"
-          placeholder="Фамилия"
-          required
-        />
-        <span v-if="errors.name" class="error">{{ errors.first_name }}</span>
-        <form-input
-          :v-model="FormData.last_name"
-          placeholder="Имя"
-          required
-        />
-        <span v-if="errors.name" class="error">{{ errors.last_name }}</span>
-        <form-input
-          :v-model="FormData.patronymic"
-          placeholder="Отчество (необязательно)"
-        />
-        <span v-if="errors.name" class="error">{{ errors.patronymic }}</span>
-        <form-input
-          :v-model="FormData.login"
-          placeholder="Придумайте логин"
-          required
-        />
-        <span v-if="errors.name" class="error">{{ errors.login }}</span>
-        <form-input
-          :v-model="FormData.phone"
-          type="tel"
-          placeholder="Номер телефона"
-          required
-        />
-        <span v-if="errors.name" class="error">{{ errors.phone }}</span>
-        <form-input
-          :v-model="FormData.email"
-          type="email"
-          placeholder="Email (необязательно)"
-        />
-        <span v-if="errors.name" class="error">{{ errors.email }}</span>
-        <form-input
-          :v-model="password1"
-          placeholder="Придумайте пароль"
-          type="password"
-          id="inputPassword1"
-          password
-          required
-        />
-        <span v-if="errors.name" class="error">{{ errors.password1 }}</span>
-        <form-input
-          :v-model="password2"
-          placeholder="Введите пароль ещё раз"
-          type="password"
-          id="inputPassword2"
-          password
-          required
-        />
+    <form class="form" @submit.prevent="store.CreateUser(FormData)">
+      <div class="form__block" >
+        <div>
+          <form-input
+            @input="validateLastName"
+            v-model="FormData.last_name"
+            placeholder="Фамилия"
+            :class="{ 'errors' : errors.last_name}"
+            required
+          />
+          <span v-if="errors.last_name" class="error">{{ errors.last_name }}</span>
+        </div>
+        <div>
+          <form-input
+            @input="validateName"
+            v-model="FormData.first_name"
+            :class="{ 'errors' : errors.first_name}"
+            placeholder="Имя"
+            required
+          />
+          <span v-if="errors.first_name" class="error">{{ errors.first_name }}</span>
+        </div>
+        <div>
+          <form-input
+            @input="validatePatronymic"
+            v-model="FormData.patronymic"
+            :class="{ 'errors' : errors.patronymic}"
+            placeholder="Отчество (необязательно)"
+          />
+          <span v-if="errors.patronymic" class="error">{{ errors.patronymic }}</span>
+        </div>
+        <div>
+          <form-input
+            @input="validateLogin"
+            v-model="FormData.login"
+            :class="{ 'errors' : errors.login}"
+            placeholder="Придумайте логин"
+            required
+          />
+          <span v-if="errors.login" class="error">{{ errors.login }}</span>
+        </div>
+        <div>
+          <form-input
+            @input="validatePhone"
+            v-model="FormData.phone"
+            type="tel"
+            :class="{ 'errors' : errors.phone}"
+            placeholder="Номер телефона"
+            required
+          />
+          <span v-if="errors.phone" class="error">{{ errors.phone }}</span>
+        </div>
+        <div>
+          <form-input
+            @input="validateEmail"
+            v-model="FormData.email"
+            type="email"
+            :class="{ 'errors' : errors.email}"
+            placeholder="Email (необязательно)"
+          />
+          <span v-if="errors.email" class="error">{{ errors.email }}</span>
+        </div>
+        <div>
+          <form-input
+            @input="validatePassword"
+            v-model="FormData.password"
+            :class="{ 'errors' : errors.password}"
+            placeholder="Придумайте пароль"
+            type="password"
+            id="inputPassword1"
+            password
+            required
+          />
+          <span v-if="errors.password" class="error">{{ errors.password }}</span>
+        </div>
+        <div>
+          <form-input
+            @input="validatePassword2"
+            placeholder="Введите пароль ещё раз"
+            type="password"
+            id="inputPassword2"
+            password
+            required
+          />
+          <span v-if="errors.password2" class="error">{{ errors.password2 }}</span>
+        </div>
       </div>
       <div class="form__checkbox">
         <label class="label">
@@ -100,6 +144,15 @@
 
 <style scoped lang="scss">
 
+.errors{
+  outline: 2px solid rgba(231, 69, 69, 1);
+}
+.error{
+  color: rgba(245, 124, 124, 1);
+  font-family: $font-primary;
+  font-weight: bold;
+  font-size: .8rem;
+}
 .registration{
   max-width: 750px;
   width: 100%;
@@ -144,6 +197,10 @@
     font-weight: $font-weight-regular;
     font-size: 1rem;
     color: $color-gray;
+    transition: .3s;
+  }
+  &__link:hover{
+    color: $btn-color-hover;
   }
 }
 .label{
@@ -180,6 +237,7 @@
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
+    transition: .2s;
   }
 
   &:checked{
