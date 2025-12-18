@@ -1,32 +1,4 @@
-# Веб-приложение "Крематорий"
-
-
-Сайт, предоставляющий услуги кремации, вход и управление своими данными, а также запрашивать документы и отслеживать статус заказов через личный кабинет
-
-----
-
-## Стек технологий для разработки
-### Frontend
-* HTML5
-* CSS
-* SCSS
-* TypeScript
-* Vue 3 Composition API
-* Vue Router
-* Vite
-* Eslint + Prettier
-* Axios
-* Pinia
-----
-### Backend
-* PHP (8.2 и больше)
-* Laravel 12.x + JWT Authorization
-* PostgreSQL
-* Docker + Docker compose
-* Nginx
-
-----
-# Инструкция по запуску
+# Запуск Docker
 
 ### Подготовка
 
@@ -34,10 +6,10 @@
 
 Ссылки:
 - Windows:
-    - [Установка Docker Desktop](https://docs.docker.com/desktop/setup/install/windows-install/)
+  - [Установка Docker Desktop](https://docs.docker.com/desktop/setup/install/windows-install/)
 - Linux:
-    - [Debian, RHEL (CentOS, Fedora), Binaries](https://docs.docker.com/engine/install/)
-    - [Arch](https://docs.docker.com/desktop/setup/install/linux/archlinux/)
+  - [Debian, RHEL (CentOS, Fedora), Binaries](https://docs.docker.com/engine/install/)
+  - [Arch](https://docs.docker.com/desktop/setup/install/linux/archlinux/)
 
 ### Запуск
 
