@@ -2,6 +2,7 @@
 
 namespace App\Actions\Deceased;
 use App\Http\Requests\Deceased\StoreDeceasedRequest;
+use App\Http\Resources\DeceasedResource;
 use App\Models\Deceased;
 
 class CreateDeceased {
@@ -10,7 +11,7 @@ class CreateDeceased {
         $deceased = Deceased::create([$request->validated()]);
         return response()->json([
             "message" => "Умерший успешно добвален",
-            "data" => $deceased,
+            "data" => new DeceasedResource($deceased),
         ]);
     }
 }

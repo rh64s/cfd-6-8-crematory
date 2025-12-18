@@ -52,9 +52,9 @@ class ApiExceptionHandler
             return $this->errorResponse(404, 'Страница не найдена, возможно она была перенесена на другой адрес.');
         }
 
-//        if ($e->getCode() == 502 || str_contains($e->getMessage(), '502')) {
-//            return $this->errorResponse(502, 'Временные неполадки на нашей стороне. Мы уже решаем проблему. Пожалуйста подождите.');
-//        }
+        if ($e->getCode() == 502 || str_contains($e->getMessage(), '502')) {
+            return $this->errorResponse(502, 'Временные неполадки на нашей стороне. Мы уже решаем проблему. Пожалуйста подождите.');
+        }
 
         if ($e->getCode() == 503 || str_contains($e->getMessage(), '503')) {
             return $this->errorResponse(503, 'Сервер временно недоступен, пожалуйста подождите немного');

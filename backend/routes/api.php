@@ -37,10 +37,11 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::patch('/orders/{order}', [OrderController::class, 'update']);
 
     Route::post('/deceaseds', [DeceasedController::class, 'store']);
+    Route::middleware([App\Http\Middleware\AdminMiddleware::class])->group(function () {
+        Route::get('/users', [ProfileController::class, 'list']);
+    });
 });
 
-Route::middleware([App\Http\Middleware\AdminMiddleware::class])->group(function () {
-    Route::get('/users', [ProfileController::class, 'list']);
-});
+
 
 
