@@ -16,6 +16,8 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained('users');
             $table->foreignId('order_id')->constrained('orders');
             $table->enum('type', ['status_update', 'document_ready', 'admin_message']);
+            // TODO: докопаться до аналитиков с вопросом насчет конкретики по enum: почему там есть это шикарное "и т.п."?
+            // дело в том, что enum либо обновлять через alter, либо сносить полностью и переопределять. поэтому нужно конкретнее знать все enum, хотя бы подавляющее кол-во
             $table->dateTime('created_at')->nullable()->default(Carbon\Carbon::now());
         });
     }
