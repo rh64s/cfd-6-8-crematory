@@ -39,7 +39,7 @@ class ServiceController extends Controller
     {
         $service->delete();
         return response()->json([
-            "message" => "Успешно удалено"
+            "toast" => "Успешно удалено"
         ], 200);
     }
 }
