@@ -32,6 +32,6 @@ class OrderController extends Controller
     public function destroy(Order $order)
     {
         $order->delete();
-        return response()->json(["message" => "Успешно удалено"], 204);
+        return response()->json(["toast" => "Успешно удалено"], 204);
     }
 }

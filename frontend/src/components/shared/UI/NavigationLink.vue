@@ -1,11 +1,9 @@
 <script setup lang="ts">
-defineProps({
-  href: String
-})
+
 </script>
 
 <template>
-  <router-link :to="`/${href}`" class="navigation-link">
+  <router-link to="/" class="navigation-link">
     <slot class="navigation"></slot>
   </router-link>
 </template>

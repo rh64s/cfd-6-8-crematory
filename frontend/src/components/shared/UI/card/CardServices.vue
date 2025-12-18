@@ -13,7 +13,7 @@ defineProps<iProps>()
     <div class="card-services__header">
       <div class="card-services__text-block">
         <h3 class="card-services__title">{{ service.name }}</h3>
-        <p class="card-services__summary"> от {{ service.price }} &#8381</p>
+        <p class="card-services__summary"> от {{ service.price   }} &#8381</p>
       </div>
       <div>
         <button-link />

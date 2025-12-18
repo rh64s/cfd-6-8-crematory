@@ -15,7 +15,7 @@ class CreateOrderAction {
             "urn_delivery_place" => $request->urn_delivery_place,
         ]);
         return response()->json([
-            'message' => 'Order created.',
+            'toast' => 'Заказ создан.',
             'data' => new OrderResource($order)
         ]);
     }

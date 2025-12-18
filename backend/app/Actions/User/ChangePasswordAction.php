@@ -3,7 +3,7 @@
 namespace App\Actions\User;
 
 use App\Exceptions\InvalidCurrentPasswordException;
-use App\Http\Requests\ChangePasswordRequest;
+use App\Http\Requests\User\ChangePasswordRequest;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Hash;
 

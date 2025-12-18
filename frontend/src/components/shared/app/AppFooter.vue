@@ -20,7 +20,7 @@ links.value = navLinkList.slice(0, navLinkList.length - 1)
         <a href="#" class="footer__link">Наш адрес: Томская обл., г. Томск, ул. Нахимова, 45</a>
         <a href="tel:88001234567" class="footer__link">Круглосуточная линия помощи: 8 (800) 123-45-67</a>
         <a href="#" class="footer__link">E-mail: info@crematory.ru</a>
-        <router-link to="/register" class="footer__link">Регистрация</router-link>
+        <a href="#" class="footer__link">Регистрация</a>
       </nav>
       <nav class="footer__block">
         <a href="#" class="footer__link">Правовая информация</a>
