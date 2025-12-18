@@ -2,7 +2,7 @@
 
 namespace App\Actions\User;
 
-use App\Http\Requests\UpdateProfileRequest;
+use App\Http\Requests\User\UpdateProfileRequest;
 use App\Http\Resources\UserResource;
 use Illuminate\Http\JsonResponse;
 

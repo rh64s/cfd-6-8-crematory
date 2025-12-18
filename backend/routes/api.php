@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\DeceasedController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
@@ -27,6 +29,14 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/services', [ServiceController::class, 'store']);
     Route::patch('/services/{id}', [ServiceController::class, 'update']);
     Route::delete('/services/{id}', [ServiceController::class, 'destroy']);
+
+    Route::get('/orders', [OrderController::class, 'index']);
+    Route::get('/orders/{order}', [OrderController::class, 'show']);
+    Route::post('/orders', [OrderController::class, 'store']);
+    Route::delete('/orders', [OrderController::class, 'destroy']);
+    Route::patch('/orders/{order}', [OrderController::class, 'update']);
+
+    Route::post('/deceaseds', [DeceasedController::class, 'store']);
 });
 
 Route::middleware([App\Http\Middleware\AdminMiddleware::class])->group(function () {

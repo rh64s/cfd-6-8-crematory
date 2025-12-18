@@ -22,7 +22,14 @@ class StoreDeceasedRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'order_id' => ['required', 'integer', 'exists:orders,id'],
+            'first_name' => 'string|required|max:255',
+            'last_name' => 'string|required|max:255',
+            'patronymic' => 'string|max:255',
+            'date_of_birth' => 'date|required',
+            'date_of_death' => 'date|required|after:date_of_birth',
+            'cause_of_death' => 'string|required',
+            'comment' => 'string|nullable',
         ];
     }
 }

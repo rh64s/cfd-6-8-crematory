@@ -10,7 +10,7 @@ class Deceased extends Model
     public $table = 'deceased';
     public $timestamps = false;
     protected $fillable = [
-        'order_id',
+//        'order_id',
         'first_name',
         'last_name',
         'patronymic',

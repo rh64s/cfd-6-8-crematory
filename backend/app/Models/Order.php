@@ -39,4 +39,11 @@ class Order extends Model
         return $this->hasMany(OrderService::class);
     }
 
+    public const STATUSES = [
+        'pending',
+        'confirmed',
+        'cancelled',
+        'in_progress',
+        'completed',
+    ];
 }
