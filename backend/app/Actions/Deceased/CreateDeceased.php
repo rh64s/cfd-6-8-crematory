@@ -10,7 +10,7 @@ class CreateDeceased {
     {
         $deceased = Deceased::create([$request->validated()]);
         return response()->json([
-            "message" => "Умерший успешно добвален",
+            "toast" => "Умерший успешно добвален",
             "data" => new DeceasedResource($deceased),
         ]);
     }

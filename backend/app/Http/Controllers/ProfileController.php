@@ -7,8 +7,6 @@ use App\Actions\User\UpdateUserProfileAction;
 use App\Actions\User\ShowUserAction;
 use App\Actions\User\DeleteUserAction;
 use App\Actions\User\ListUsersAction;
-use App\Http\Requests\ChangePasswordRequest;
-use App\Http\Requests\UpdateProfileRequest;
 use App\Http\Requests\User\ChangePasswordRequest;
 use App\Http\Requests\User\UpdateProfileRequest;
 use Illuminate\Http\JsonResponse;
