@@ -3,33 +3,43 @@
 namespace App\Actions\Auth;
 
 use App\Exceptions\InvalidPasswordResetTokenException;
+use App\Http\Requests\ResetPasswordRequest;
 use App\Models\User;
 use App\Services\PasswordResetTokenService;
+use Illuminate\Http\JsonResponse;
 
 class ResetPasswordAction
 {
-    public function __construct(
-        protected PasswordResetTokenService $tokenService
-    )
+    public static function handle(ResetPasswordRequest $request): JsonResponse
     {
-    }
+        $data = $request->validated();
 
-    /**
-     * @throws InvalidPasswordResetTokenException
-     */
-    public function handle(string $login, string $token, string $password): void
-    {
-        $validation = $this->tokenService->validate($login, $token);        // проверяем токен
+        $tokenService = app(PasswordResetTokenService::class);
+
+        $validation = $tokenService->validate(
+            $data['identifier'],
+            $data['type'],
+            $data['token']
+        );
+
         if (!$validation['valid']) {
-            throw new InvalidPasswordResetTokenException($validation['reason'] ?? 'invalid');
+            throw new InvalidPasswordResetTokenException(
+                $validation['reason'] ?? 'invalid'
+            );
         }
 
-        /** @var User $user */
-        $user = User::where('login', $login)->firstOrFail();      // ищем юзера
+        $user = User::query()
+            ->where($data['type'], $data['identifier'])
+            ->firstOrFail();
 
-        $user->password = $password;      // смена пароля
+        $user->password = $data['new_password'];
         $user->save();
 
-        $this->tokenService->delete($login);        // удаление токена
+        $tokenService->delete($data['identifier'], $data['type']);
+
+        return response()->json([
+            'toast' => 'Пароль успешно восстановлен',
+            'data' => null,
+        ]);
     }
 }

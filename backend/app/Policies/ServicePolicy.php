@@ -2,31 +2,26 @@
 
 namespace App\Policies;
 
-use App\Models\Service;
 use App\Models\User;
-use Illuminate\Auth\Access\Response;
+use App\Models\Service;
 
 class ServicePolicy
 {
-    /**
-     * Determine whether the user can create models.
-     */
+    public function view(User $user, Service $service): bool
+    {
+        return $service->is_active || $user->is_admin;
+    }
+
     public function create(User $user): bool
     {
         return $user->isAdmin();
     }
 
-    /**
-     * Determine whether the user can update the model.
-     */
     public function update(User $user, Service $service): bool
     {
         return $user->isAdmin();
     }
 
-    /**
-     * Determine whether the user can delete the model.
-     */
     public function delete(User $user, Service $service): bool
     {
         return $user->isAdmin();

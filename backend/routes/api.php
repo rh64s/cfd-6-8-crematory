@@ -17,11 +17,20 @@ Route::apiResource('/services', ServiceController::class, ['only' => ['index', '
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/profile', [ProfileController::class, 'me']);
+    Route::get('/profile/{id}', [ProfileController::class, 'show']);
     Route::patch('/profile', [ProfileController::class, 'update']);
     Route::post('/change-password', [ProfileController::class, 'changePassword']);
+    Route::delete('/profile', [ProfileController::class, 'destroy']);
 
-    Route::prefix('auth')->group(function () {
-        Route::post('/logout', [AuthController::class, 'logout']);
-    });
-    Route::apiResource('/services', ServiceController::class, ['except' => ['index', 'show']]);
+    Route::post('/auth/logout', [AuthController::class, 'logout']);
+
+    Route::post('/services', [ServiceController::class, 'store']);
+    Route::patch('/services/{id}', [ServiceController::class, 'update']);
+    Route::delete('/services/{id}', [ServiceController::class, 'destroy']);
 });
+
+Route::middleware([App\Http\Middleware\AdminMiddleware::class])->group(function () {
+    Route::get('/users', [ProfileController::class, 'list']);
+});
+
+
