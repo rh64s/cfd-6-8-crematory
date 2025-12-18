@@ -3,35 +3,58 @@
 </script>
 
 <template>
-  <article class="service-card">
-    <div class="service-card__header">
-      <div class="service-card__text-block">
-        <div class="skeleton-line service-card__title"></div>
-        <div class="skeleton-line service-card__price"></div>
-      </div>
-      <div class="service-card__button"></div>
-    </div>
+  <article class="urn-ashes-card">
+    <div class="skeleton-line urn-ashes-card__image"></div>
 
-    <div class="skeleton-line service-card__description"></div>
-    <div class="skeleton-line service-card__description"></div>
-    <div class="skeleton-line service-card__description"></div>
+    <div class="urn-ashes-card__info">
+      <div class="skeleton-line urn-ashes-card__name"></div>
+      <div class="skeleton-line urn-ashes-card__price-range"></div>
+    </div>
     <div class="skeleton-shine"></div>
   </article>
 </template>
 
 <style scoped lang="scss">
-.service-card {
+.urn-ashes-card {
   position: relative;
   background-color: #f5f5f5;
   border-radius: 33px;
-  padding: 40px 20px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.05);
   animation: pulse 1.5s ease-in-out infinite;
   overflow: hidden;
-  height: 245px;
-  max-width: 494px;
-  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 20px;
+  max-width: 289px;
+  row-gap: 20px;
 
+  &__image {
+    border-radius: 33px;
+    width: 287px;
+    height: 230px;
+  }
+
+  &__info {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 8px;
+    width: 100%;
+  }
+
+  &__name {
+    width: 60%;
+    height: 20px;
+  }
+
+  &__price-range {
+    width: 80%;
+    height: 15px;
+  }
+}
+.service-card {
   &__header {
     display: flex;
     align-items: center;
@@ -46,28 +69,6 @@
     flex-direction: column;
     row-gap: 8px;
     width: 100%;
-  }
-
-  &__title {
-    height: 20px;
-    width: 70%;
-  }
-
-  &__price {
-    height: 18px;
-    width: 50%;
-  }
-
-  &__description {
-    height: 16px;
-    width: 90%;
-  }
-
-  &__button{
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background-color: #d0d0d0;
   }
 }
 

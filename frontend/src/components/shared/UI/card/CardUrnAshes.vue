@@ -7,6 +7,7 @@ interface iProps {
 }
 
 defineProps<iProps>()
+
 const getImageUrl = (name: string) => {
   return new URL(`../../../../assets/image/urnsAshes/${name}`, import.meta.url).href
 }
