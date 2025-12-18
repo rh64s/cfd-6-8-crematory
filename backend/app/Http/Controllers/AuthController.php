@@ -12,10 +12,6 @@ use Illuminate\Http\Request;
 
 class AuthController extends Controller
 {
-//    лучше action как статические вызывать
-//      то есть, не создавая объект класса, можем вызвать его метод
-//    это один из способов работать с ними, но, так как мы в action сильно не углубляемся, то отдельный пакет не будет докачивать
-
     public function register(RegisterUserRequest $request): JsonResponse
     {
         return RegisterUserAction::handle($request);

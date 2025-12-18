@@ -11,7 +11,7 @@ class UpdateDeceasedRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,13 @@ class UpdateDeceasedRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'first_name' => 'string|max:255',
+            'last_name' => 'string|max:255',
+            'patronymic' => 'string|max:255',
+            'date_of_birth' => 'date',
+            'date_of_death' => 'date|after:date_of_birth',
+            'cause_of_death' => 'string',
+            'comment' => 'string|nullable',
         ];
     }
 }

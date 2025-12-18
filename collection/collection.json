@@ -1,0 +1,571 @@
+{
+  "info": {
+    "name": "Kafedra_Crematory",
+    "description": "",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Service",
+      "item": [
+        {
+          "name": "Create service",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "{{host_api}}/api/services/",
+              "protocol": "",
+              "host": [
+                "{{host_api}}"
+              ],
+              "path": [
+                "api",
+                "services",
+                ""
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Доставка на слоне\",\n  \"description\": \"6 слонов из Арабии донесут вашу вазочку\",\n  \"price\": 80000\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Delete service",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "{{host_api}}/services/1",
+              "protocol": "",
+              "host": [
+                "{{host_api}}"
+              ],
+              "path": [
+                "services",
+                "1"
+              ],
+              "query": [],
+              "variable": []
+            }
+          }
+        },
+        {
+          "name": "Get one service",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "{{host_api}}/api/services/5",
+              "protocol": "",
+              "host": [
+                "{{host_api}}"
+              ],
+              "path": [
+                "api",
+                "services",
+                "5"
+              ],
+              "query": [],
+              "variable": []
+            }
+          }
+        },
+        {
+          "name": "Get services",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "{{host_api}}/api/services/",
+              "protocol": "",
+              "host": [
+                "{{host_api}}"
+              ],
+              "path": [
+                "api",
+                "services",
+                ""
+              ],
+              "query": [],
+              "variable": []
+            }
+          }
+        },
+        {
+          "name": "Update service",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "key": "token",
+                "value": "2|0IIzHUZI5BWmHZEH4tPWiDjHpsk3cIQHz7kCjXP2d5e9090a",
+                "type": "string"
+              }
+            },
+            "description": "",
+            "url": {
+              "raw": "{{host_api}}/api/services/1",
+              "protocol": "",
+              "host": [
+                "{{host_api}}"
+              ],
+              "path": [
+                "api",
+                "services",
+                "1"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Пять слонов\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "User",
+      "item": [
+        {
+          "name": "Profile",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "{{host_api}}/api/profile",
+              "protocol": "",
+              "host": [
+                "{{host_api}}"
+              ],
+              "path": [
+                "api",
+                "profile"
+              ],
+              "query": [],
+              "variable": []
+            }
+          }
+        },
+        {
+          "name": "Update profile",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "{{host_api}}/api/profile",
+              "protocol": "",
+              "host": [
+                "{{host_api}}"
+              ],
+              "path": [
+                "api",
+                "profile"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"first_name\": \"Новоеимя\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Auth",
+          "item": [
+            {
+              "name": "Login",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "auth": {
+                  "type": "noauth"
+                },
+                "description": "",
+                "url": {
+                  "raw": "{{host_api}}/api/auth/login",
+                  "protocol": "",
+                  "host": [
+                    "{{host_api}}"
+                  ],
+                  "path": [
+                    "api",
+                    "auth",
+                    "login"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"login\": \"ssssss\",\n  \"password\": \"QWEasd123\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "name": "Logout",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "auth": {
+                  "type": "noauth"
+                },
+                "description": "",
+                "url": {
+                  "raw": "{{host_api}}/api/auth/logout",
+                  "protocol": "",
+                  "host": [
+                    "{{host_api}}"
+                  ],
+                  "path": [
+                    "api",
+                    "auth",
+                    "logout"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "name": "Registration",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "disabled": false,
+                    "type": "default"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "disabled": false,
+                    "type": "default"
+                  }
+                ],
+                "auth": {
+                  "type": "noauth"
+                },
+                "description": "",
+                "url": {
+                  "raw": "{{host_api}}/api/auth/register",
+                  "protocol": "",
+                  "host": [
+                    "{{host_api}}"
+                  ],
+                  "path": [
+                    "api",
+                    "auth",
+                    "register"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"first_name\": \"ssss\",\n  \"last_name\": \"Александрович\",\n  \"patronymic\": \"ssss\",\n  \"login\": \"ssssss\",\n  \"phone\": \"+88005553535\",\n  \"email\": \"example@example.com\",\n  \"password\": \"QWEasd123\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "RestorePassword",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "{{host_api}}/api/change-password",
+              "protocol": "",
+              "host": [
+                "{{host_api}}"
+              ],
+              "path": [
+                "api",
+                "change-password"
+              ],
+              "query": [],
+              "variable": []
+            }
+          }
+        },
+        {
+          "name": "ChangePassword",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "{{host_api}}/api/reset-password",
+              "protocol": "",
+              "host": [
+                "{{host_api}}"
+              ],
+              "path": [
+                "api",
+                "reset-password"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"dasdas@das.sad\",\n  \"token\": \"asdasds\",\n  \"password\": \"newpassword\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "forgot password",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "{{host_api}}/api/forgot-password",
+              "protocol": "",
+              "host": [
+                "{{host_api}}"
+              ],
+              "path": [
+                "api",
+                "forgot-password"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"example@example.com\",\n  \"phone\": \"+72173821122\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Orders",
+      "item": [
+        {
+          "name": "Get orders",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "disabled": false,
+                "type": "default"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "disabled": false,
+                "type": "default"
+              }
+            ],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "{{host_api}}/api/orders",
+              "protocol": "",
+              "host": [
+                "{{host_api}}"
+              ],
+              "path": [
+                "api",
+                "orders"
+              ],
+              "query": [],
+              "variable": []
+            }
+          }
+        },
+        {
+          "name": "Create order",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "{{host_api}}/api/orders",
+              "protocol": "",
+              "host": [
+                "{{host_api}}"
+              ],
+              "path": [
+                "api",
+                "orders"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"cremation_date\": \"2026-12-12\",\n  \"urn_delivery_place\": \"Улица Пушкина дом Колотушкина\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Service to order",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "{{host_api}}/services-to-order",
+              "protocol": "",
+              "host": [
+                "{{host_api}}"
+              ],
+              "path": [
+                "services-to-order"
+              ],
+              "query": [],
+              "variable": []
+            }
+          }
+        },
+        {
+          "name": "Add deceased",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "{{host_api}}/api/deceaseds",
+              "protocol": "",
+              "host": [
+                "{{host_api}}"
+              ],
+              "path": [
+                "api",
+                "deceaseds"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"order_id\": 5,\n  \"first_name\": \"Константин\",\n  \"last_name\": \"Констанинополь\",\n  \"date_of_birth\": \"2000-12-12\",\n  \"date_of_death\": \"2001-12-12\",\n  \"cause_of_death\": \"споткнулся\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "host_api",
+      "value": "",
+      "type": "default"
+    }
+  ]
+}
