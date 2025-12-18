@@ -5,12 +5,14 @@ namespace App\Actions\User;
 use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 
 class ShowUserAction
 {
-    public function handle(User $user, int $userId): JsonResponse
+    public static function handle(Request $request, int $userId): JsonResponse
     {
+        $currentUser = $request->user();
         $targetUser = User::findOrFail($userId);
 
         if (!Gate::allows('view', $targetUser)) {
@@ -18,7 +20,6 @@ class ShowUserAction
         }
 
         return response()->json([
-            'success' => true,
             'data' => new UserResource($targetUser),
         ]);
     }

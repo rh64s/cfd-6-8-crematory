@@ -29,3 +29,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::patch('/services/{id}', [ServiceController::class, 'update']);
     Route::delete('/services/{id}', [ServiceController::class, 'destroy']);
 });
+
+Route::middleware([App\Http\Middleware\AdminMiddleware::class])->group(function () {
+    Route::get('/users', [ProfileController::class, 'list']);
+});
+
+

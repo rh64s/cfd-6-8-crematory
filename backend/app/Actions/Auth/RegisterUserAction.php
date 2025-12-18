@@ -19,7 +19,6 @@ class RegisterUserAction
         $user = User::create($request->validated());
 
         return response()->json([
-            'success' => true,
             'toast' => 'Вы успешно прошли регистрацию',
         ], 201);
         /*

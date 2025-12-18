@@ -13,7 +13,6 @@ class AdminMiddleware
     {
         if (!Gate::allows('admin')) {
             return response()->json([
-                'success' => false,
                 'error' => [
                     'code' => 403,
                     'message' => 'Доступ запрещён.',

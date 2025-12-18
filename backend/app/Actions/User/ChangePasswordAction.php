@@ -3,7 +3,8 @@
 namespace App\Actions\User;
 
 use App\Exceptions\InvalidCurrentPasswordException;
-use App\Models\User;
+use App\Http\Requests\ChangePasswordRequest;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Hash;
 
 class ChangePasswordAction
@@ -11,13 +12,21 @@ class ChangePasswordAction
     /**
      * @throws InvalidCurrentPasswordException
      */
-    public function handle(User $user, string $currentPassword, string $newPassword): void
+    public static function handle(ChangePasswordRequest $request): JsonResponse
     {
-        if (! Hash::check($currentPassword, $user->password)) {
+        $user = $request->user();
+        $data = $request->validated();
+
+        if (!Hash::check($data['current_password'], $user->password)) {
             throw new InvalidCurrentPasswordException();
         }
 
-        $user->password = $newPassword;
+        $user->password = $data['password'];
         $user->save();
+
+        return response()->json([
+            'toast' => 'Пароль успешно изменён',
+            'data' => null,
+        ]);
     }
 }

@@ -16,7 +16,6 @@ class LogoutUserAction
          * */
         Auth::user()->currentAccessToken()->delete();
         return response()->json([
-            'success' => true,
             'toast' => 'Вы успешно вышли из аккаунта',
             'data' => null,
         ], 200);

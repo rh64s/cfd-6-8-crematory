@@ -2,22 +2,18 @@
 
 namespace App\Actions\Auth;
 
+use App\Http\Requests\ForgotPasswordRequest;
 use App\Models\User;
 use App\Services\PasswordResetTokenService;
+use Illuminate\Http\JsonResponse;
 use RuntimeException;
 
 class SendPasswordResetCodeAction
 {
-    public function __construct(
-        protected PasswordResetTokenService $tokenService,
-    ) {
-    }
-
-    /**
-     * @param array{email?: string, phone?: string} $data
-     */
-    public function handle(array $data): void
+    public static function handle(ForgotPasswordRequest $request): JsonResponse
     {
+        $data = $request->validated();
+
         /** @var User $user */
         $user = User::query()
             ->when(
@@ -33,12 +29,23 @@ class SendPasswordResetCodeAction
         $type = isset($data['email']) ? 'email' : 'phone';
         $identifier = $data[$type];
 
-        if (! $this->tokenService->canResend($identifier, $type)) {
+        $tokenService = app(PasswordResetTokenService::class);
+
+        if (!$tokenService->canResend($identifier, $type)) {
             throw new RuntimeException('Слишком частые запросы. Попробуйте позже.');
         }
 
-        $code = $this->tokenService->create($identifier, $type);
+        $debugCode = $tokenService->create($identifier, $type);
 
+        $response = [
+            'toast' => 'Код отправлен',
+            'data' => null,
+        ];
 
+        if ($debugCode !== null && config('app.debug')) {
+            $response['data']['debug_code'] = $debugCode;
+        }
+
+        return response()->json($response);
     }
 }

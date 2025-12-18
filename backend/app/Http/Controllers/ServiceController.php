@@ -30,7 +30,6 @@ class ServiceController extends Controller
         $services = $this->listServicesAction->handle($onlyActive);
 
         return response()->json([
-            'success' => true,
             'data' => ServiceResource::collection($services),
         ]);
     }
@@ -44,7 +43,6 @@ class ServiceController extends Controller
         }
 
         return response()->json([
-            'success' => true,
             'data' => new ServiceResource($service),
         ]);
     }
@@ -58,7 +56,6 @@ class ServiceController extends Controller
         $service = $this->createServiceAction->handle($request->validated());
 
         return response()->json([
-            'success' => true,
             'data' => new ServiceResource($service),
             'toast' => 'Новая услуга успешно добавлена в каталог услуг.',
         ], 201);
@@ -73,7 +70,6 @@ class ServiceController extends Controller
         $service = $this->updateServiceAction->handle($id, $request->validated());
 
         return response()->json([
-            'success' => true,
             'data' => new ServiceResource($service),
             'toast' => 'Данные услуги были успешно изменены.',
         ]);
@@ -88,7 +84,6 @@ class ServiceController extends Controller
         $this->deleteServiceAction->handle($id);
 
         return response()->json([
-            'success' => true,
             'toast' => 'Услуга успешно удалена.',
         ]);
     }

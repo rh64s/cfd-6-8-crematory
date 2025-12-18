@@ -21,7 +21,6 @@ class ApiFormRequest extends FormRequest
 
         throw new HttpResponseException(
             response()->json([
-                'success' => false,
                 'error' => [
                     'code' => 400,
                     'message' => $message,
