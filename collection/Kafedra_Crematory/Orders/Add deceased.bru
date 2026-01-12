@@ -1,0 +1,27 @@
+meta {
+  name: Add deceased
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{host_api}}/api/deceaseds
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "order_id": 5,
+    "first_name": "Константин",
+    "last_name": "Констанинополь",
+    "date_of_birth": "2000-12-12",
+    "date_of_death": "2001-12-12",
+    "cause_of_death": "споткнулся"
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

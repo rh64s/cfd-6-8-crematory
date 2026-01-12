@@ -1,0 +1,16 @@
+meta {
+  name: Get one service
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{host_api}}/api/services/5
+  body: none
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

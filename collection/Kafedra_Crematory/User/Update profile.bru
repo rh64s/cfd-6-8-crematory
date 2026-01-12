@@ -1,0 +1,22 @@
+meta {
+  name: Update profile
+  type: http
+  seq: 3
+}
+
+patch {
+  url: {{host_api}}/api/profile
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "first_name": "Новоеимя"
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

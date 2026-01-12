@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "Kafedra_Crematory",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}

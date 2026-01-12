@@ -1,0 +1,23 @@
+meta {
+  name: Create order
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{host_api}}/api/orders
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "cremation_date": "2026-12-12",
+    "urn_delivery_place": "Улица Пушкина дом Колотушкина"
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

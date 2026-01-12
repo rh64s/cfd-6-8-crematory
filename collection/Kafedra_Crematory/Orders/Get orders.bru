@@ -1,0 +1,21 @@
+meta {
+  name: Get orders
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{host_api}}/api/orders
+  body: none
+  auth: inherit
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

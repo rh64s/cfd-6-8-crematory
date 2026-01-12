@@ -1,0 +1,26 @@
+meta {
+  name: Update service
+  type: http
+  seq: 4
+}
+
+patch {
+  url: {{host_api}}/api/services/1
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: 2|0IIzHUZI5BWmHZEH4tPWiDjHpsk3cIQHz7kCjXP2d5e9090a
+}
+
+body:json {
+  {
+    "name": "Пять слонов"
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
